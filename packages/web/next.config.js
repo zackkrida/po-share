@@ -1,3 +1,3 @@
 module.exports = {
-  mode: 'serverless',
+  target: 'serverless',
 }
