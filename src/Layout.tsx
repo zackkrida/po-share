@@ -1,7 +1,6 @@
 import Header from './Header'
-import * as React from 'react'
-import Head from 'next/head'
 import GlobalStyles from './GlobalStyles'
+import Head from './Head'
 
 export default ({
   title = 'po share | a pocket operator community',
@@ -9,10 +8,7 @@ export default ({
   children,
 }: LayoutProps) => (
   <>
-    <Head>
-      <title key="title">{title}</title>
-      <meta name="description" content={description} />
-    </Head>
+    <Head title={title} description={description} />
     <Header />
     <GlobalStyles />
     <main>{children}</main>
