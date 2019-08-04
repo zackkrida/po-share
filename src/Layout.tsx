@@ -5,11 +5,15 @@ import GlobalStyles from './GlobalStyles'
 
 export default ({
   title = 'po share | a pocket operator community',
+  description = "a fan community for patches, tracks, and other content for teenage engineering's pocket operators",
   children,
 }: LayoutProps) => (
   <>
     <Head>
       <title key="title">{title}</title>
+      <meta name="description" content={description} />
+
+      <meta http-equiv="content-language" content="en" />
     </Head>
     <Header />
     <GlobalStyles />
@@ -25,5 +29,6 @@ export default ({
 declare type LayoutProps = {
   /** The meta title of the page */
   title?: string
+  description?: string
   children: React.ReactNode
 }
