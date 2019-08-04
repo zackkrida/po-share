@@ -12,8 +12,6 @@ export default ({
     <Head>
       <title key="title">{title}</title>
       <meta name="description" content={description} />
-
-      <meta http-equiv="content-language" content="en" />
     </Head>
     <Header />
     <GlobalStyles />
