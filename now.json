@@ -3,8 +3,9 @@
   "version": 2,
   "builds": [
     {
-      "src": "package.json",
+      "src": "packages/web/package.json",
       "use": "@now/next"
     }
-  ]
+  ],
+  "routes": [{ "src": "^/(.*)$", "dest": "/packages/web/$1" }]
 }
