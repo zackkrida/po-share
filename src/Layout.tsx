@@ -23,6 +23,7 @@ export default ({
 declare type LayoutProps = {
   /** The meta title of the page */
   title?: string
+  /** The meta description of the page */
   description?: string
   children: React.ReactNode
 }

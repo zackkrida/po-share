@@ -9,6 +9,8 @@ export default ({ title, description }: HeadProps) => (
 )
 
 declare type HeadProps = {
+  /** The meta title of the page */
   title: string
+  /** The meta description of the page */
   description: string
 }
