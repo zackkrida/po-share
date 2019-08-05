@@ -1,5 +1,8 @@
 {
   "name": "po-share",
+  "github": {
+    "enabled": false
+  },
   "version": 2,
   "builds": [
     {
