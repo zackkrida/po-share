@@ -1,3 +1,6 @@
+import dotenv from 'dotenv'
+dotenv.config({ path: '../../../.env' })
+
 import { createDb, migrate } from 'postgres-migrations'
 
 /**
@@ -5,28 +8,28 @@ import { createDb, migrate } from 'postgres-migrations'
  * values are declared in a seperate .env file and attached to the node process
  */
 createDb(
-  'database-name',
+  process.env.DB_NAME || 'po_share',
   {
-    defaultDatabase: process.env.DB_NAME || 'postgres', // optional, default: "postgres"
     user: process.env.DB_USER || 'postgres',
-    password: process.env.DB_PASSWORD || 'password',
+    password: process.env.DB_PASSWORD || '',
     host: process.env.DB_HOST || 'localhost',
-    port: parseInt(process.env.DB_PORT) || 5432,
+    port: parseInt(process.env.DB_PORT || '5432'),
   },
   { logger }
 )
   .then(() => runMigrations)
   .catch(logger)
+  .catch(logger)
 
 const runMigrations = migrate(
   {
-    database: 'database-name',
-    user: 'postgres',
-    password: 'password',
-    host: 'localhost',
-    port: 5432,
+    database: process.env.DB_NAME || 'po_share',
+    user: process.env.DB_USER || 'postgres',
+    password: process.env.DB_PASSWORD || '',
+    host: process.env.DB_HOST || 'localhost',
+    port: parseInt(process.env.DB_PORT || '5432'),
   },
-  'path/to/migration/files',
+  './migrations',
   { logger }
 )
 

@@ -2,7 +2,19 @@
   "name": "@po-share/database",
   "license": "MIT",
   "version": "1.0.0",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc -b",
+    "prepublishOnly": "tsc -b",
+    "start": "node dist/index.js"
+  },
   "dependencies": {
+    "dotenv": "^8.0.0",
     "postgres-migrations": "^3.0.2"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^6.1.1",
+    "@types/node": "^12.6.9",
+    "typescript": "^3.5.3"
   }
 }
