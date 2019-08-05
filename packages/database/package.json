@@ -1,0 +1,8 @@
+{
+  "name": "@po-share/database",
+  "license": "MIT",
+  "version": "1.0.0",
+  "dependencies": {
+    "postgres-migrations": "^3.0.2"
+  }
+}
