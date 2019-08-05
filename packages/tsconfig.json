@@ -1,0 +1,8 @@
+{
+  "files": [],
+  "references": [
+    { "path": "database" },
+    { "path": "queries" },
+    { "path": "web" }
+  ]
+}
