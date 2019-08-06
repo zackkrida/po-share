@@ -1,6 +1,3 @@
-import { config } from 'dotenv'
-config({ path: '../../.env' })
-
 import PgSimplifyInflectorPlugin from '@graphile-contrib/pg-simplify-inflector'
 
 export const postgraphileOptions = {

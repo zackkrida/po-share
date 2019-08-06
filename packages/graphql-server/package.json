@@ -10,8 +10,8 @@
   "scripts": {
     "build": "tsc -b",
     "build:cache": "node ./dist/makeCache.js",
-    "dev": "node dist",
-    "start": "node dist"
+    "dev": "node -r dotenv/config dist dotenv_config_path=../../.env",
+    "start": "node -r dotenv/config dist dotenv_config_path=../../.env"
   },
   "devDependencies": {
     "@now/node": "^0.12.3",
