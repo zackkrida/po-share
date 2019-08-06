@@ -1,9 +1,6 @@
 {
   "name": "po-share",
   "version": 2,
-  "github": {
-    "enabled": false
-  },
   "env": {
     "DB_NAME": "@po_db_name",
     "DB_USER": "@po_db_user",
