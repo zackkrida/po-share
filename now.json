@@ -1,6 +1,7 @@
 {
   "name": "po-share",
   "version": 2,
+  "regions": ["cle"],
   "env": {
     "DB_NAME": "@po_db_name",
     "DB_USER": "@po_db_user",
