@@ -6,13 +6,10 @@
     "dev": "tsc -w",
     "build": "tsc -b",
     "prepublishOnly": "tsc -b",
-    "db:migrate": "node dist/index.js",
-    "start": "postgraphile"
+    "db:migrate": "node dist/index.js"
   },
   "dependencies": {
-    "@graphile-contrib/pg-simplify-inflector": "^5.0.0-beta.1",
     "dotenv": "^8.0.0",
-    "postgraphile": "^4.4.1",
     "postgres-migrations": "^3.0.2"
   },
   "devDependencies": {

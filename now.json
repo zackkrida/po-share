@@ -8,7 +8,14 @@
     {
       "src": "packages/web/package.json",
       "use": "@now/next"
+    },
+    {
+      "src": "packages/graphql-server/src/index.ts",
+      "use": "@now/node"
     }
   ],
-  "routes": [{ "src": "^/(.*)$", "dest": "/packages/web/$1" }]
+  "routes": [
+    { "src": "/graphql", "dest": "packages/graphql-server/src/index.ts" },
+    { "src": "^/(.*)$", "dest": "/packages/web/$1" }
+  ]
 }

@@ -3,16 +3,16 @@ import { createHttpLink } from 'apollo-link-http'
 import { setContext } from 'apollo-link-context'
 import fetch from 'isomorphic-unfetch'
 
-let apolloClient = null
+let apolloClient: any = null
 
 // Polyfill fetch() on the server (used by apollo-client)
 if (typeof window === 'undefined') {
   ;(global as any).fetch = fetch
 }
 
-function create(initialState, { getToken, fetchOptions }) {
+function create(initialState: any, { getToken, fetchOptions }: any) {
   const httpLink = createHttpLink({
-    uri: 'http://localhost:5000/graphql',
+    uri: 'http://localhost:3000/graphql',
     fetchOptions,
   })
 
@@ -41,7 +41,7 @@ function create(initialState, { getToken, fetchOptions }) {
   })
 }
 
-export default function initApollo(initialState, options) {
+export default function initApollo(initialState: any, options: any) {
   // Make sure to create a new client for every server-side request so that data
   // isn't shared between connections (which would be bad)
   if (typeof window === 'undefined') {

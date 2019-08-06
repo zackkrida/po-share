@@ -7,9 +7,11 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "now dev"
+    "dev": "now dev",
+    "deploy": "now"
   },
   "dependencies": {
-    "lerna": "^3.16.4"
+    "lerna": "^3.16.4",
+    "now": "^16.0.0"
   }
 }

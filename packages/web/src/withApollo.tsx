@@ -1,6 +1,5 @@
 import React from 'react'
 import cookie from 'cookie'
-import PropTypes from 'prop-types'
 import { getDataFromTree } from 'react-apollo'
 import Head from 'next/head'
 
@@ -13,13 +12,13 @@ function parseCookies(req: any = {}, options = {}) {
   )
 }
 
-export default App => {
+export default (App: any) => {
   return class WithData extends React.Component {
     static displayName = `WithData(${App.displayName})`
 
     apolloClient: any
 
-    static async getInitialProps(ctx) {
+    static async getInitialProps(ctx: any) {
       const {
         AppTree,
         ctx: { req, res },
@@ -71,7 +70,7 @@ export default App => {
       }
     }
 
-    constructor(props) {
+    constructor(props: any) {
       super(props)
       // `getDataFromTree` renders the component first, the client is passed off as a property.
       // After that rendering is done using Next's normal rendering pipeline

@@ -10,3 +10,6 @@ generates:
     config:
       withHOC: false
       withHooks: true
+  # ./graphql.schema.json:
+  #   plugins:
+  #     - 'introspection'

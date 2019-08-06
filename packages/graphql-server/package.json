@@ -1,0 +1,22 @@
+{
+  "name": "@po-share/graphql-server",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -b",
+    "build:cache": "node ./dist/makeCache.js",
+    "dev": "node dist",
+    "start": "node dist"
+  },
+  "devDependencies": {
+    "@now/node": "^0.12.3",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "@graphile-contrib/pg-simplify-inflector": "^5.0.0-beta.1",
+    "dotenv": "^8.0.0",
+    "postgraphile": "^4.4.1"
+  }
+}
