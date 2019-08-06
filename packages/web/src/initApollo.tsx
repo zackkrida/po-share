@@ -10,9 +10,12 @@ if (typeof window === 'undefined') {
   ;(global as any).fetch = fetch
 }
 
-function create(initialState: any, { getToken, fetchOptions }: any) {
+function create(
+  initialState: any,
+  { getGraphqlUri, getToken, fetchOptions }: any
+) {
   const httpLink = createHttpLink({
-    uri: '/graphql',
+    uri: getGraphqlUri(),
     fetchOptions,
   })
 

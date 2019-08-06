@@ -57,4 +57,10 @@ function useAuthenticateMutation(baseOptions) {
     return ReactApolloHooks.useMutation(exports.AuthenticateDocument, baseOptions);
 }
 exports.useAuthenticateMutation = useAuthenticateMutation;
-var templateObject_1;
+exports.CurrentPersonDocument = graphql_tag_1.default(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  query currentPerson {\n    currentPerson {\n      fullName\n      firstName\n      lastName\n      about\n      createdAt\n      updatedAt\n    }\n  }\n"], ["\n  query currentPerson {\n    currentPerson {\n      fullName\n      firstName\n      lastName\n      about\n      createdAt\n      updatedAt\n    }\n  }\n"])));
+exports.CurrentPersonComponent = function (props) { return (React.createElement(ReactApollo.Query, __assign({ query: exports.CurrentPersonDocument }, props))); };
+function useCurrentPersonQuery(baseOptions) {
+    return ReactApolloHooks.useQuery(exports.CurrentPersonDocument, baseOptions);
+}
+exports.useCurrentPersonQuery = useCurrentPersonQuery;
+var templateObject_1, templateObject_2;

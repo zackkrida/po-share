@@ -6,4 +6,5 @@ var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cook
 Object.defineProperty(exports, "__esModule", { value: true });
 var graphql_tag_1 = require("graphql-tag");
 exports.AUTHENTICATE = graphql_tag_1.default(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  mutation authenticate($email: String!, $password: String!) {\n    authenticate(input: { email: $email, password: $password }) {\n      jwtToken\n    }\n  }\n"], ["\n  mutation authenticate($email: String!, $password: String!) {\n    authenticate(input: { email: $email, password: $password }) {\n      jwtToken\n    }\n  }\n"])));
-var templateObject_1;
+exports.GET_CURRENT_USER = graphql_tag_1.default(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  query currentPerson {\n    currentPerson {\n      fullName\n      firstName\n      lastName\n      about\n      createdAt\n      updatedAt\n    }\n  }\n"], ["\n  query currentPerson {\n    currentPerson {\n      fullName\n      firstName\n      lastName\n      about\n      createdAt\n      updatedAt\n    }\n  }\n"])));
+var templateObject_1, templateObject_2;

@@ -468,9 +468,22 @@ export declare type AuthenticateMutation = {
         __typename?: "AuthenticatePayload";
     } & Pick<AuthenticatePayload, "jwtToken">>;
 };
+export declare type CurrentPersonQueryVariables = {};
+export declare type CurrentPersonQuery = {
+    __typename?: "Query";
+} & {
+    currentPerson: Maybe<{
+        __typename?: "Person";
+    } & Pick<Person, "fullName" | "firstName" | "lastName" | "about" | "createdAt" | "updatedAt">>;
+};
 export declare const AuthenticateDocument: any;
 export declare type AuthenticateMutationFn = ReactApollo.MutationFn<AuthenticateMutation, AuthenticateMutationVariables>;
 export declare type AuthenticateComponentProps = Omit<ReactApollo.MutationProps<AuthenticateMutation, AuthenticateMutationVariables>, "mutation">;
 export declare const AuthenticateComponent: (props: Pick<ReactApollo.MutationProps<AuthenticateMutation, AuthenticateMutationVariables>, "client" | "ignoreResults" | "optimisticResponse" | "variables" | "refetchQueries" | "awaitRefetchQueries" | "update" | "children" | "onCompleted" | "onError" | "context" | "fetchPolicy">) => JSX.Element;
 export declare function useAuthenticateMutation(baseOptions?: ReactApolloHooks.MutationHookOptions<AuthenticateMutation, AuthenticateMutationVariables>): [ReactApolloHooks.MutationFn<AuthenticateMutation, AuthenticateMutationVariables>, ReactApolloHooks.MutationResult<AuthenticateMutation>];
 export declare type AuthenticateMutationHookResult = ReturnType<typeof useAuthenticateMutation>;
+export declare const CurrentPersonDocument: any;
+export declare type CurrentPersonComponentProps = Omit<ReactApollo.QueryProps<CurrentPersonQuery, CurrentPersonQueryVariables>, "query">;
+export declare const CurrentPersonComponent: (props: Pick<ReactApollo.QueryProps<CurrentPersonQuery, CurrentPersonQueryVariables>, "client" | "variables" | "children" | "onCompleted" | "onError" | "context" | "fetchPolicy" | "errorPolicy" | "displayName" | "skip" | "ssr" | "pollInterval" | "notifyOnNetworkStatusChange" | "partialRefetch" | "returnPartialData">) => JSX.Element;
+export declare function useCurrentPersonQuery(baseOptions?: ReactApolloHooks.QueryHookOptions<CurrentPersonQueryVariables>): ReactApolloHooks.QueryHookResult<CurrentPersonQuery, CurrentPersonQueryVariables>;
+export declare type CurrentPersonQueryHookResult = ReturnType<typeof useCurrentPersonQuery>;

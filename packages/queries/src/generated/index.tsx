@@ -518,6 +518,22 @@ export type AuthenticateMutation = { __typename?: "Mutation" } & {
   >;
 };
 
+export type CurrentPersonQueryVariables = {};
+
+export type CurrentPersonQuery = { __typename?: "Query" } & {
+  currentPerson: Maybe<
+    { __typename?: "Person" } & Pick<
+      Person,
+      | "fullName"
+      | "firstName"
+      | "lastName"
+      | "about"
+      | "createdAt"
+      | "updatedAt"
+    >
+  >;
+};
+
 export const AuthenticateDocument = gql`
   mutation authenticate($email: String!, $password: String!) {
     authenticate(input: { email: $email, password: $password }) {
@@ -557,4 +573,39 @@ export function useAuthenticateMutation(
 }
 export type AuthenticateMutationHookResult = ReturnType<
   typeof useAuthenticateMutation
+>;
+export const CurrentPersonDocument = gql`
+  query currentPerson {
+    currentPerson {
+      fullName
+      firstName
+      lastName
+      about
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export type CurrentPersonComponentProps = Omit<
+  ReactApollo.QueryProps<CurrentPersonQuery, CurrentPersonQueryVariables>,
+  "query"
+>;
+
+export const CurrentPersonComponent = (props: CurrentPersonComponentProps) => (
+  <ReactApollo.Query<CurrentPersonQuery, CurrentPersonQueryVariables>
+    query={CurrentPersonDocument}
+    {...props}
+  />
+);
+
+export function useCurrentPersonQuery(
+  baseOptions?: ReactApolloHooks.QueryHookOptions<CurrentPersonQueryVariables>
+) {
+  return ReactApolloHooks.useQuery<
+    CurrentPersonQuery,
+    CurrentPersonQueryVariables
+  >(CurrentPersonDocument, baseOptions);
+}
+export type CurrentPersonQueryHookResult = ReturnType<
+  typeof useCurrentPersonQuery
 >;
