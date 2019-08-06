@@ -1,9 +1,17 @@
 {
   "name": "po-share",
+  "version": 2,
   "github": {
     "enabled": false
   },
-  "version": 2,
+  "env": {
+    "DB_NAME": "@po_db_name",
+    "DB_USER": "@po_db_user",
+    "DB_PASSWORD": "@po_db_password",
+    "DB_HOST": "@po_db_host",
+    "DB_PORT": "@po_db_port",
+    "DB_SCHEMAS": "@po_db_schemas"
+  },
   "builds": [
     {
       "src": "packages/web/package.json",

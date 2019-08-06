@@ -1,6 +1,3 @@
-import dotenv from 'dotenv'
-dotenv.config({ path: '../../../.env' })
-
 import { createDb, migrate } from 'postgres-migrations'
 
 /**

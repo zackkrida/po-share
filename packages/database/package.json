@@ -6,7 +6,10 @@
     "dev": "tsc -w",
     "build": "tsc -b",
     "prepublishOnly": "tsc -b",
-    "db:migrate": "node dist/index.js"
+    "db:migrate": "node -r dotenv/config dist/index.js dotenv_config_path=../../.env"
+  },
+  "engines": {
+    "node": "10.x"
   },
   "dependencies": {
     "dotenv": "^8.0.0",

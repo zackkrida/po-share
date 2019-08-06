@@ -4,6 +4,9 @@
   "license": "MIT",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "engines": {
+    "node": "10.x"
+  },
   "scripts": {
     "build": "tsc -b",
     "build:cache": "node ./dist/makeCache.js",

@@ -2,4 +2,3 @@ node_modules
 .vscode
 .next
 *-error.log
-dist
