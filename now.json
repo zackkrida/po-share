@@ -8,7 +8,8 @@
     "DB_PASSWORD": "@po_db_password",
     "DB_HOST": "@po_db_host",
     "DB_PORT": "@po_db_port",
-    "DB_SCHEMAS": "@po_db_schemas"
+    "DB_SCHEMAS": "@po_db_schemas",
+    "JWT_SECRET": "@po_jwt_secret"
   },
   "builds": [
     {

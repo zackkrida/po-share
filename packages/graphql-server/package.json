@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "tsc -b",
-    "build:cache": "node ./dist/makeCache.js",
+    "build:cache": "node -r dotenv/config dist/makeCache.js dotenv_config_path=../../.env",
     "dev": "node -r dotenv/config dist dotenv_config_path=../../.env",
     "start": "node -r dotenv/config dist dotenv_config_path=../../.env"
   },

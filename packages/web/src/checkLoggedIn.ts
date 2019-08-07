@@ -7,7 +7,6 @@ export default (apolloClient: ApolloClient<NormalizedCacheObject>) =>
       query: GET_CURRENT_USER,
     })
     .then(({ data, errors }) => {
-      console.log({ data, errors })
       return { loggedInUser: data.currentPerson }
     })
     .catch(error => {

@@ -11,6 +11,7 @@
   ],
   "scripts": {
     "dev": "now dev",
+    "db:cache": "lerna run build:cache",
     "deploy": "now"
   },
   "dependencies": {

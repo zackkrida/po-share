@@ -1,6 +1,5 @@
 node_modules
 .vscode
 .next
-*.-error.log
+*-error.log
 dist
-.cache
