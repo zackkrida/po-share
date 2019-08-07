@@ -1,7 +1,7 @@
 import { GET_CURRENT_USER, CurrentPersonQuery } from '@po-share/queries'
-import { ApolloClient, NormalizedCacheObject } from 'apollo-boost'
+import { ApolloClient } from 'apollo-boost'
 
-export default (apolloClient: ApolloClient<NormalizedCacheObject>) =>
+export default (apolloClient: ApolloClient<object>) =>
   apolloClient
     .query<CurrentPersonQuery>({
       query: GET_CURRENT_USER,

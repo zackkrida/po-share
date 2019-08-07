@@ -476,6 +476,23 @@ export declare type CurrentPersonQuery = {
         __typename?: "Person";
     } & Pick<Person, "fullName" | "firstName" | "lastName" | "about" | "createdAt" | "updatedAt">>;
 };
+export declare type RegisterUserMutationVariables = {
+    firstName: Scalars["String"];
+    lastName: Scalars["String"];
+    email: Scalars["String"];
+    password: Scalars["String"];
+};
+export declare type RegisterUserMutation = {
+    __typename?: "Mutation";
+} & {
+    registerPerson: Maybe<{
+        __typename?: "RegisterPersonPayload";
+    } & {
+        person: Maybe<{
+            __typename?: "Person";
+        } & Pick<Person, "id" | "fullName" | "firstName" | "lastName" | "about" | "createdAt" | "updatedAt">>;
+    }>;
+};
 export declare const AuthenticateDocument: any;
 export declare type AuthenticateMutationFn = ReactApollo.MutationFn<AuthenticateMutation, AuthenticateMutationVariables>;
 export declare type AuthenticateComponentProps = Omit<ReactApollo.MutationProps<AuthenticateMutation, AuthenticateMutationVariables>, "mutation">;
@@ -487,3 +504,9 @@ export declare type CurrentPersonComponentProps = Omit<ReactApollo.QueryProps<Cu
 export declare const CurrentPersonComponent: (props: Pick<ReactApollo.QueryProps<CurrentPersonQuery, CurrentPersonQueryVariables>, "client" | "variables" | "children" | "onCompleted" | "onError" | "context" | "fetchPolicy" | "errorPolicy" | "displayName" | "skip" | "ssr" | "pollInterval" | "notifyOnNetworkStatusChange" | "partialRefetch" | "returnPartialData">) => JSX.Element;
 export declare function useCurrentPersonQuery(baseOptions?: ReactApolloHooks.QueryHookOptions<CurrentPersonQueryVariables>): ReactApolloHooks.QueryHookResult<CurrentPersonQuery, CurrentPersonQueryVariables>;
 export declare type CurrentPersonQueryHookResult = ReturnType<typeof useCurrentPersonQuery>;
+export declare const RegisterUserDocument: any;
+export declare type RegisterUserMutationFn = ReactApollo.MutationFn<RegisterUserMutation, RegisterUserMutationVariables>;
+export declare type RegisterUserComponentProps = Omit<ReactApollo.MutationProps<RegisterUserMutation, RegisterUserMutationVariables>, "mutation">;
+export declare const RegisterUserComponent: (props: Pick<ReactApollo.MutationProps<RegisterUserMutation, RegisterUserMutationVariables>, "client" | "ignoreResults" | "optimisticResponse" | "variables" | "refetchQueries" | "awaitRefetchQueries" | "update" | "children" | "onCompleted" | "onError" | "context" | "fetchPolicy">) => JSX.Element;
+export declare function useRegisterUserMutation(baseOptions?: ReactApolloHooks.MutationHookOptions<RegisterUserMutation, RegisterUserMutationVariables>): [ReactApolloHooks.MutationFn<RegisterUserMutation, RegisterUserMutationVariables>, ReactApolloHooks.MutationResult<RegisterUserMutation>];
+export declare type RegisterUserMutationHookResult = ReturnType<typeof useRegisterUserMutation>;

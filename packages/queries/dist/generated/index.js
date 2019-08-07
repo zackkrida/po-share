@@ -63,4 +63,10 @@ function useCurrentPersonQuery(baseOptions) {
     return ReactApolloHooks.useQuery(exports.CurrentPersonDocument, baseOptions);
 }
 exports.useCurrentPersonQuery = useCurrentPersonQuery;
-var templateObject_1, templateObject_2;
+exports.RegisterUserDocument = graphql_tag_1.default(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n  mutation registerUser(\n    $firstName: String!\n    $lastName: String!\n    $email: String!\n    $password: String!\n  ) {\n    registerPerson(\n      input: {\n        firstName: $firstName\n        lastName: $lastName\n        email: $email\n        password: $password\n      }\n    ) {\n      person {\n        id\n        fullName\n        firstName\n        lastName\n        about\n        createdAt\n        updatedAt\n      }\n    }\n  }\n"], ["\n  mutation registerUser(\n    $firstName: String!\n    $lastName: String!\n    $email: String!\n    $password: String!\n  ) {\n    registerPerson(\n      input: {\n        firstName: $firstName\n        lastName: $lastName\n        email: $email\n        password: $password\n      }\n    ) {\n      person {\n        id\n        fullName\n        firstName\n        lastName\n        about\n        createdAt\n        updatedAt\n      }\n    }\n  }\n"])));
+exports.RegisterUserComponent = function (props) { return (React.createElement(ReactApollo.Mutation, __assign({ mutation: exports.RegisterUserDocument }, props))); };
+function useRegisterUserMutation(baseOptions) {
+    return ReactApolloHooks.useMutation(exports.RegisterUserDocument, baseOptions);
+}
+exports.useRegisterUserMutation = useRegisterUserMutation;
+var templateObject_1, templateObject_2, templateObject_3;

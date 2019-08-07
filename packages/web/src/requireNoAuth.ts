@@ -11,9 +11,9 @@ export default async (context: CustomContext) => {
   try {
     const { loggedInUser } = await checkLoggedIn(context.apolloClient)
 
-    if (!loggedInUser) {
-      // If not signed in, send them somewhere more useful
-      redirect(context, '/login')
+    if (loggedInUser) {
+      // If signed in, send them somewhere more useful
+      redirect(context, '/')
     }
     return { loggedInUser }
   } catch (error) {

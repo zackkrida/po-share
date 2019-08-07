@@ -1,11 +1,12 @@
 import { useState, FormEvent, FormEventHandler } from 'react'
-import Layout from '../src/Layout'
-import { useAuthenticateMutation } from '@po-share/queries'
+import { Layout } from '../src/Layout'
+import { useAuthenticateMutation, Person } from '@po-share/queries'
 import cookie from 'cookie'
 import { useApolloClient } from 'react-apollo-hooks'
 import redirect from '../src/redirect'
+import requireNoAuth from '../src/requireNoAuth'
 
-export default () => {
+const LoginPage = ({ loggedInUser }: { loggedInUser: Person }) => {
   const client = useApolloClient()
   const [authenticate] = useAuthenticateMutation()
   const [email, setEmail] = useState('')
@@ -43,7 +44,8 @@ export default () => {
   }
 
   return (
-    <Layout>
+    <Layout title="Log in | po-share">
+      <h1>Log in to po-share.com!</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">
           Email
@@ -71,3 +73,7 @@ export default () => {
     </Layout>
   )
 }
+
+LoginPage.getInitialProps = requireNoAuth
+
+export default LoginPage

@@ -534,6 +534,32 @@ export type CurrentPersonQuery = { __typename?: "Query" } & {
   >;
 };
 
+export type RegisterUserMutationVariables = {
+  firstName: Scalars["String"];
+  lastName: Scalars["String"];
+  email: Scalars["String"];
+  password: Scalars["String"];
+};
+
+export type RegisterUserMutation = { __typename?: "Mutation" } & {
+  registerPerson: Maybe<
+    { __typename?: "RegisterPersonPayload" } & {
+      person: Maybe<
+        { __typename?: "Person" } & Pick<
+          Person,
+          | "id"
+          | "fullName"
+          | "firstName"
+          | "lastName"
+          | "about"
+          | "createdAt"
+          | "updatedAt"
+        >
+      >;
+    }
+  >;
+};
+
 export const AuthenticateDocument = gql`
   mutation authenticate($email: String!, $password: String!) {
     authenticate(input: { email: $email, password: $password }) {
@@ -608,4 +634,64 @@ export function useCurrentPersonQuery(
 }
 export type CurrentPersonQueryHookResult = ReturnType<
   typeof useCurrentPersonQuery
+>;
+export const RegisterUserDocument = gql`
+  mutation registerUser(
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+    $password: String!
+  ) {
+    registerPerson(
+      input: {
+        firstName: $firstName
+        lastName: $lastName
+        email: $email
+        password: $password
+      }
+    ) {
+      person {
+        id
+        fullName
+        firstName
+        lastName
+        about
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`;
+export type RegisterUserMutationFn = ReactApollo.MutationFn<
+  RegisterUserMutation,
+  RegisterUserMutationVariables
+>;
+export type RegisterUserComponentProps = Omit<
+  ReactApollo.MutationProps<
+    RegisterUserMutation,
+    RegisterUserMutationVariables
+  >,
+  "mutation"
+>;
+
+export const RegisterUserComponent = (props: RegisterUserComponentProps) => (
+  <ReactApollo.Mutation<RegisterUserMutation, RegisterUserMutationVariables>
+    mutation={RegisterUserDocument}
+    {...props}
+  />
+);
+
+export function useRegisterUserMutation(
+  baseOptions?: ReactApolloHooks.MutationHookOptions<
+    RegisterUserMutation,
+    RegisterUserMutationVariables
+  >
+) {
+  return ReactApolloHooks.useMutation<
+    RegisterUserMutation,
+    RegisterUserMutationVariables
+  >(RegisterUserDocument, baseOptions);
+}
+export type RegisterUserMutationHookResult = ReturnType<
+  typeof useRegisterUserMutation
 >;

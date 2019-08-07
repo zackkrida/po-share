@@ -6,7 +6,7 @@ export const postgraphileOptions = {
   graphqlRoute: '/graphql',
   defaultRole: 'po_share_anonymous',
   appendPlugins: [PgSimplifyInflectorPlugin],
-  jwtSecret: process.env.JWT_SECRET || String(Math.random()),
+  jwtSecret: process.env.JWT_SECRET,
   jwtPgTypeIdentifier: 'po_share.jwt_token',
 }
 

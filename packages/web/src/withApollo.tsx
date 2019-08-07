@@ -7,10 +7,14 @@ import Head from 'next/head'
 import initApollo from './initApollo'
 
 function parseCookies(req: any = {}, options = {}) {
-  return cookie.parse(
+  let cooki = cookie.parse(
     req.headers ? req.headers.cookie || '' : document.cookie,
     options
   )
+
+  console.log(cooki)
+
+  return cooki
 }
 
 export default (App: any) => {

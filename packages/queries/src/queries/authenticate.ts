@@ -20,3 +20,31 @@ export const GET_CURRENT_USER = gql`
     }
   }
 `
+
+export const REGISTER_USER = gql`
+  mutation registerUser(
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+    $password: String!
+  ) {
+    registerPerson(
+      input: {
+        firstName: $firstName
+        lastName: $lastName
+        email: $email
+        password: $password
+      }
+    ) {
+      person {
+        id
+        fullName
+        firstName
+        lastName
+        about
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`
