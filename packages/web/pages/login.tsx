@@ -1,8 +1,8 @@
-import { useState, FormEvent, FormEventHandler } from 'react'
-import { Layout } from '../src/Layout'
-import { useAuthenticateMutation, Person } from '@po-share/queries'
+import { Person, useAuthenticateMutation } from '@po-share/queries'
 import cookie from 'cookie'
+import { FormEventHandler, useState } from 'react'
 import { useApolloClient } from 'react-apollo-hooks'
+import { Layout } from '../src/Layout'
 import redirect from '../src/redirect'
 import requireNoAuth from '../src/requireNoAuth'
 
@@ -22,7 +22,7 @@ const LoginPage = ({ loggedInUser }: { loggedInUser: Person }) => {
       },
     })
 
-    if (!errors && data) {
+    if (!errors && data && data.authenticate && data.authenticate.jwtToken) {
       setEmail('')
       setPassword('')
 
