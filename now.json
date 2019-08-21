@@ -18,7 +18,10 @@
     },
     {
       "src": "packages/graphql-server/src/index.ts",
-      "use": "@now/node"
+      "use": "@now/node@canary",
+      "options": {
+        "watch": []
+      }
     }
   ],
   "routes": [
