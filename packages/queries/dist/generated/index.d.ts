@@ -41,23 +41,106 @@ export declare type AuthenticatePayload = {
     /** Our root query field type. Allows us to run any query from our mutation payload. */
     query?: Maybe<Query>;
 };
+/** All input for the create `Track` mutation. */
+export declare type CreateTrackInput = {
+    /** An arbitrary string value with no semantic meaning. Will be included in the
+     * payload verbatim. May be used to track mutations by the client.
+     */
+    clientMutationId?: Maybe<Scalars["String"]>;
+    /** The `Track` to be created by this mutation. */
+    track: TrackInput;
+};
+/** The output of our create `Track` mutation. */
+export declare type CreateTrackPayload = {
+    __typename?: "CreateTrackPayload";
+    /** The exact same `clientMutationId` that was provided in the mutation input,
+     * unchanged and unused. May be used by a client to track mutations.
+     */
+    clientMutationId?: Maybe<Scalars["String"]>;
+    /** The `Track` that was created by this mutation. */
+    track?: Maybe<Track>;
+    /** Our root query field type. Allows us to run any query from our mutation payload. */
+    query?: Maybe<Query>;
+    /** Reads a single `Person` that is related to this `Track`. */
+    person?: Maybe<Person>;
+    /** An edge for our `Track`. May be used by Relay 1. */
+    trackEdge?: Maybe<TracksEdge>;
+};
+/** The output of our create `Track` mutation. */
+export declare type CreateTrackPayloadTrackEdgeArgs = {
+    orderBy?: Maybe<Array<TracksOrderBy>>;
+};
+/** All input for the `deleteTrackByNodeId` mutation. */
+export declare type DeleteTrackByNodeIdInput = {
+    /** An arbitrary string value with no semantic meaning. Will be included in the
+     * payload verbatim. May be used to track mutations by the client.
+     */
+    clientMutationId?: Maybe<Scalars["String"]>;
+    /** The globally unique `ID` which will identify a single `Track` to be deleted. */
+    nodeId: Scalars["ID"];
+};
+/** All input for the `deleteTrack` mutation. */
+export declare type DeleteTrackInput = {
+    /** An arbitrary string value with no semantic meaning. Will be included in the
+     * payload verbatim. May be used to track mutations by the client.
+     */
+    clientMutationId?: Maybe<Scalars["String"]>;
+    id: Scalars["Int"];
+};
+/** The output of our delete `Track` mutation. */
+export declare type DeleteTrackPayload = {
+    __typename?: "DeleteTrackPayload";
+    /** The exact same `clientMutationId` that was provided in the mutation input,
+     * unchanged and unused. May be used by a client to track mutations.
+     */
+    clientMutationId?: Maybe<Scalars["String"]>;
+    /** The `Track` that was deleted by this mutation. */
+    track?: Maybe<Track>;
+    deletedTrackNodeId?: Maybe<Scalars["ID"]>;
+    /** Our root query field type. Allows us to run any query from our mutation payload. */
+    query?: Maybe<Query>;
+    /** Reads a single `Person` that is related to this `Track`. */
+    person?: Maybe<Person>;
+    /** An edge for our `Track`. May be used by Relay 1. */
+    trackEdge?: Maybe<TracksEdge>;
+};
+/** The output of our delete `Track` mutation. */
+export declare type DeleteTrackPayloadTrackEdgeArgs = {
+    orderBy?: Maybe<Array<TracksOrderBy>>;
+};
 /** The root mutation type which contains root level fields which mutate data. */
 export declare type Mutation = {
     __typename?: "Mutation";
+    /** Creates a single `Track`. */
+    createTrack?: Maybe<CreateTrackPayload>;
     /** Updates a single `Person` using its globally unique id and a patch. */
     updatePersonByNodeId?: Maybe<UpdatePersonPayload>;
     /** Updates a single `Person` using a unique key and a patch. */
     updatePerson?: Maybe<UpdatePersonPayload>;
+    /** Updates a single `Person` using a unique key and a patch. */
+    updatePersonByUsername?: Maybe<UpdatePersonPayload>;
+    /** Updates a single `Track` using its globally unique id and a patch. */
+    updateTrackByNodeId?: Maybe<UpdateTrackPayload>;
+    /** Updates a single `Track` using a unique key and a patch. */
+    updateTrack?: Maybe<UpdateTrackPayload>;
     /** Updates a single `PersonAccount` using its globally unique id and a patch. */
     updatePersonAccountByNodeId?: Maybe<UpdatePersonAccountPayload>;
     /** Updates a single `PersonAccount` using a unique key and a patch. */
     updatePersonAccount?: Maybe<UpdatePersonAccountPayload>;
     /** Updates a single `PersonAccount` using a unique key and a patch. */
     updatePersonAccountByEmail?: Maybe<UpdatePersonAccountPayload>;
+    /** Deletes a single `Track` using its globally unique id. */
+    deleteTrackByNodeId?: Maybe<DeleteTrackPayload>;
+    /** Deletes a single `Track` using a unique key. */
+    deleteTrack?: Maybe<DeleteTrackPayload>;
     /** Creates a JWT token that will securely identify a person and give them certain permissions. */
     authenticate?: Maybe<AuthenticatePayload>;
     /** Registers a single user and creates an account in our app. */
     registerPerson?: Maybe<RegisterPersonPayload>;
+};
+/** The root mutation type which contains root level fields which mutate data. */
+export declare type MutationCreateTrackArgs = {
+    input: CreateTrackInput;
 };
 /** The root mutation type which contains root level fields which mutate data. */
 export declare type MutationUpdatePersonByNodeIdArgs = {
@@ -66,6 +149,18 @@ export declare type MutationUpdatePersonByNodeIdArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export declare type MutationUpdatePersonArgs = {
     input: UpdatePersonInput;
+};
+/** The root mutation type which contains root level fields which mutate data. */
+export declare type MutationUpdatePersonByUsernameArgs = {
+    input: UpdatePersonByUsernameInput;
+};
+/** The root mutation type which contains root level fields which mutate data. */
+export declare type MutationUpdateTrackByNodeIdArgs = {
+    input: UpdateTrackByNodeIdInput;
+};
+/** The root mutation type which contains root level fields which mutate data. */
+export declare type MutationUpdateTrackArgs = {
+    input: UpdateTrackInput;
 };
 /** The root mutation type which contains root level fields which mutate data. */
 export declare type MutationUpdatePersonAccountByNodeIdArgs = {
@@ -78,6 +173,14 @@ export declare type MutationUpdatePersonAccountArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export declare type MutationUpdatePersonAccountByEmailArgs = {
     input: UpdatePersonAccountByEmailInput;
+};
+/** The root mutation type which contains root level fields which mutate data. */
+export declare type MutationDeleteTrackByNodeIdArgs = {
+    input: DeleteTrackByNodeIdInput;
+};
+/** The root mutation type which contains root level fields which mutate data. */
+export declare type MutationDeleteTrackArgs = {
+    input: DeleteTrackInput;
 };
 /** The root mutation type which contains root level fields which mutate data. */
 export declare type MutationAuthenticateArgs = {
@@ -139,6 +242,8 @@ export declare enum PeopleOrderBy {
     CreatedAtDesc = "CREATED_AT_DESC",
     UpdatedAtAsc = "UPDATED_AT_ASC",
     UpdatedAtDesc = "UPDATED_AT_DESC",
+    UsernameAsc = "USERNAME_ASC",
+    UsernameDesc = "USERNAME_DESC",
     PrimaryKeyAsc = "PRIMARY_KEY_ASC",
     PrimaryKeyDesc = "PRIMARY_KEY_DESC"
 }
@@ -157,10 +262,13 @@ export declare type Person = Node & {
     /** The time this person was created. */
     createdAt?: Maybe<Scalars["Datetime"]>;
     updatedAt?: Maybe<Scalars["Datetime"]>;
+    username?: Maybe<Scalars["String"]>;
     /** Reads a single `PersonAccount` that is related to this `Person`. */
     personAccountByPersonId?: Maybe<PersonAccount>;
     /** Reads and enables pagination through a set of `PersonAccount`. */
     personAccounts: PersonAccountsConnection;
+    /** Reads and enables pagination through a set of `Track`. */
+    tracks: TracksConnection;
     /** A person’s full name which is a concatenation of their first and last name. */
     fullName?: Maybe<Scalars["String"]>;
 };
@@ -172,6 +280,15 @@ export declare type PersonPersonAccountsArgs = {
     after?: Maybe<Scalars["Cursor"]>;
     orderBy?: Maybe<Array<PersonAccountsOrderBy>>;
     condition?: Maybe<PersonAccountCondition>;
+};
+export declare type PersonTracksArgs = {
+    first?: Maybe<Scalars["Int"]>;
+    last?: Maybe<Scalars["Int"]>;
+    offset?: Maybe<Scalars["Int"]>;
+    before?: Maybe<Scalars["Cursor"]>;
+    after?: Maybe<Scalars["Cursor"]>;
+    orderBy?: Maybe<Array<TracksOrderBy>>;
+    condition?: Maybe<TrackCondition>;
 };
 export declare type PersonAccount = Node & {
     __typename?: "PersonAccount";
@@ -252,6 +369,8 @@ export declare type PersonCondition = {
     createdAt?: Maybe<Scalars["Datetime"]>;
     /** Checks for equality with the object’s `updatedAt` field. */
     updatedAt?: Maybe<Scalars["Datetime"]>;
+    /** Checks for equality with the object’s `username` field. */
+    username?: Maybe<Scalars["String"]>;
 };
 /** Represents an update to a `Person`. Fields that are set will be updated. */
 export declare type PersonPatch = {
@@ -266,6 +385,7 @@ export declare type PersonPatch = {
     /** The time this person was created. */
     createdAt?: Maybe<Scalars["Datetime"]>;
     updatedAt?: Maybe<Scalars["Datetime"]>;
+    username?: Maybe<Scalars["String"]>;
 };
 /** The root query type which gives access points into the data universe. */
 export declare type Query = Node & {
@@ -280,15 +400,21 @@ export declare type Query = Node & {
     node?: Maybe<Node>;
     /** Reads and enables pagination through a set of `Person`. */
     people?: Maybe<PeopleConnection>;
+    /** Reads and enables pagination through a set of `Track`. */
+    tracks?: Maybe<TracksConnection>;
     /** Reads and enables pagination through a set of `PersonAccount`. */
     personAccounts?: Maybe<PersonAccountsConnection>;
     person?: Maybe<Person>;
+    personByUsername?: Maybe<Person>;
+    track?: Maybe<Track>;
     personAccount?: Maybe<PersonAccount>;
     personAccountByEmail?: Maybe<PersonAccount>;
     /** Gets the person who was identified by our JWT. */
     currentPerson?: Maybe<Person>;
     /** Reads a single `Person` using its globally unique `ID`. */
     personByNodeId?: Maybe<Person>;
+    /** Reads a single `Track` using its globally unique `ID`. */
+    trackByNodeId?: Maybe<Track>;
     /** Reads a single `PersonAccount` using its globally unique `ID`. */
     personAccountByNodeId?: Maybe<PersonAccount>;
 };
@@ -307,6 +433,16 @@ export declare type QueryPeopleArgs = {
     condition?: Maybe<PersonCondition>;
 };
 /** The root query type which gives access points into the data universe. */
+export declare type QueryTracksArgs = {
+    first?: Maybe<Scalars["Int"]>;
+    last?: Maybe<Scalars["Int"]>;
+    offset?: Maybe<Scalars["Int"]>;
+    before?: Maybe<Scalars["Cursor"]>;
+    after?: Maybe<Scalars["Cursor"]>;
+    orderBy?: Maybe<Array<TracksOrderBy>>;
+    condition?: Maybe<TrackCondition>;
+};
+/** The root query type which gives access points into the data universe. */
 export declare type QueryPersonAccountsArgs = {
     first?: Maybe<Scalars["Int"]>;
     last?: Maybe<Scalars["Int"]>;
@@ -321,6 +457,14 @@ export declare type QueryPersonArgs = {
     id: Scalars["Int"];
 };
 /** The root query type which gives access points into the data universe. */
+export declare type QueryPersonByUsernameArgs = {
+    username: Scalars["String"];
+};
+/** The root query type which gives access points into the data universe. */
+export declare type QueryTrackArgs = {
+    id: Scalars["Int"];
+};
+/** The root query type which gives access points into the data universe. */
 export declare type QueryPersonAccountArgs = {
     personId: Scalars["Int"];
 };
@@ -330,6 +474,10 @@ export declare type QueryPersonAccountByEmailArgs = {
 };
 /** The root query type which gives access points into the data universe. */
 export declare type QueryPersonByNodeIdArgs = {
+    nodeId: Scalars["ID"];
+};
+/** The root query type which gives access points into the data universe. */
+export declare type QueryTrackByNodeIdArgs = {
     nodeId: Scalars["ID"];
 };
 /** The root query type which gives access points into the data universe. */
@@ -364,6 +512,118 @@ export declare type RegisterPersonPayload = {
 export declare type RegisterPersonPayloadPersonEdgeArgs = {
     orderBy?: Maybe<Array<PeopleOrderBy>>;
 };
+export declare type Track = Node & {
+    __typename?: "Track";
+    /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+    nodeId: Scalars["ID"];
+    id: Scalars["Int"];
+    personId?: Maybe<Scalars["Int"]>;
+    name: Scalars["String"];
+    image?: Maybe<Scalars["String"]>;
+    file?: Maybe<Scalars["String"]>;
+    public?: Maybe<Scalars["Boolean"]>;
+    createdAt?: Maybe<Scalars["Datetime"]>;
+    updatedAt?: Maybe<Scalars["Datetime"]>;
+    publishedAt?: Maybe<Scalars["Datetime"]>;
+    deletedAt?: Maybe<Scalars["Datetime"]>;
+    /** Reads a single `Person` that is related to this `Track`. */
+    person?: Maybe<Person>;
+};
+/** A condition to be used against `Track` object types. All fields are tested for equality and combined with a logical ‘and.’ */
+export declare type TrackCondition = {
+    /** Checks for equality with the object’s `id` field. */
+    id?: Maybe<Scalars["Int"]>;
+    /** Checks for equality with the object’s `personId` field. */
+    personId?: Maybe<Scalars["Int"]>;
+    /** Checks for equality with the object’s `name` field. */
+    name?: Maybe<Scalars["String"]>;
+    /** Checks for equality with the object’s `image` field. */
+    image?: Maybe<Scalars["String"]>;
+    /** Checks for equality with the object’s `file` field. */
+    file?: Maybe<Scalars["String"]>;
+    /** Checks for equality with the object’s `public` field. */
+    public?: Maybe<Scalars["Boolean"]>;
+    /** Checks for equality with the object’s `createdAt` field. */
+    createdAt?: Maybe<Scalars["Datetime"]>;
+    /** Checks for equality with the object’s `updatedAt` field. */
+    updatedAt?: Maybe<Scalars["Datetime"]>;
+    /** Checks for equality with the object’s `publishedAt` field. */
+    publishedAt?: Maybe<Scalars["Datetime"]>;
+    /** Checks for equality with the object’s `deletedAt` field. */
+    deletedAt?: Maybe<Scalars["Datetime"]>;
+};
+/** An input for mutations affecting `Track` */
+export declare type TrackInput = {
+    id?: Maybe<Scalars["Int"]>;
+    personId?: Maybe<Scalars["Int"]>;
+    name: Scalars["String"];
+    image?: Maybe<Scalars["String"]>;
+    file?: Maybe<Scalars["String"]>;
+    public?: Maybe<Scalars["Boolean"]>;
+    createdAt?: Maybe<Scalars["Datetime"]>;
+    updatedAt?: Maybe<Scalars["Datetime"]>;
+    publishedAt?: Maybe<Scalars["Datetime"]>;
+    deletedAt?: Maybe<Scalars["Datetime"]>;
+};
+/** Represents an update to a `Track`. Fields that are set will be updated. */
+export declare type TrackPatch = {
+    id?: Maybe<Scalars["Int"]>;
+    personId?: Maybe<Scalars["Int"]>;
+    name?: Maybe<Scalars["String"]>;
+    image?: Maybe<Scalars["String"]>;
+    file?: Maybe<Scalars["String"]>;
+    public?: Maybe<Scalars["Boolean"]>;
+    createdAt?: Maybe<Scalars["Datetime"]>;
+    updatedAt?: Maybe<Scalars["Datetime"]>;
+    publishedAt?: Maybe<Scalars["Datetime"]>;
+    deletedAt?: Maybe<Scalars["Datetime"]>;
+};
+/** A connection to a list of `Track` values. */
+export declare type TracksConnection = {
+    __typename?: "TracksConnection";
+    /** A list of `Track` objects. */
+    nodes: Array<Maybe<Track>>;
+    /** A list of edges which contains the `Track` and cursor to aid in pagination. */
+    edges: Array<TracksEdge>;
+    /** Information to aid in pagination. */
+    pageInfo: PageInfo;
+    /** The count of *all* `Track` you could get from the connection. */
+    totalCount: Scalars["Int"];
+};
+/** A `Track` edge in the connection. */
+export declare type TracksEdge = {
+    __typename?: "TracksEdge";
+    /** A cursor for use in pagination. */
+    cursor?: Maybe<Scalars["Cursor"]>;
+    /** The `Track` at the end of the edge. */
+    node?: Maybe<Track>;
+};
+/** Methods to use when ordering `Track`. */
+export declare enum TracksOrderBy {
+    Natural = "NATURAL",
+    IdAsc = "ID_ASC",
+    IdDesc = "ID_DESC",
+    PersonIdAsc = "PERSON_ID_ASC",
+    PersonIdDesc = "PERSON_ID_DESC",
+    NameAsc = "NAME_ASC",
+    NameDesc = "NAME_DESC",
+    ImageAsc = "IMAGE_ASC",
+    ImageDesc = "IMAGE_DESC",
+    FileAsc = "FILE_ASC",
+    FileDesc = "FILE_DESC",
+    PublicAsc = "PUBLIC_ASC",
+    PublicDesc = "PUBLIC_DESC",
+    CreatedAtAsc = "CREATED_AT_ASC",
+    CreatedAtDesc = "CREATED_AT_DESC",
+    UpdatedAtAsc = "UPDATED_AT_ASC",
+    UpdatedAtDesc = "UPDATED_AT_DESC",
+    PublishedAtAsc = "PUBLISHED_AT_ASC",
+    PublishedAtDesc = "PUBLISHED_AT_DESC",
+    DeletedAtAsc = "DELETED_AT_ASC",
+    DeletedAtDesc = "DELETED_AT_DESC",
+    PrimaryKeyAsc = "PRIMARY_KEY_ASC",
+    PrimaryKeyDesc = "PRIMARY_KEY_DESC"
+}
 /** All input for the `updatePersonAccountByEmail` mutation. */
 export declare type UpdatePersonAccountByEmailInput = {
     /** An arbitrary string value with no semantic meaning. Will be included in the
@@ -428,6 +688,16 @@ export declare type UpdatePersonByNodeIdInput = {
     /** An object where the defined keys will be set on the `Person` being updated. */
     patch: PersonPatch;
 };
+/** All input for the `updatePersonByUsername` mutation. */
+export declare type UpdatePersonByUsernameInput = {
+    /** An arbitrary string value with no semantic meaning. Will be included in the
+     * payload verbatim. May be used to track mutations by the client.
+     */
+    clientMutationId?: Maybe<Scalars["String"]>;
+    /** An object where the defined keys will be set on the `Person` being updated. */
+    patch: PersonPatch;
+    username: Scalars["String"];
+};
 /** All input for the `updatePerson` mutation. */
 export declare type UpdatePersonInput = {
     /** An arbitrary string value with no semantic meaning. Will be included in the
@@ -457,6 +727,47 @@ export declare type UpdatePersonPayload = {
 export declare type UpdatePersonPayloadPersonEdgeArgs = {
     orderBy?: Maybe<Array<PeopleOrderBy>>;
 };
+/** All input for the `updateTrackByNodeId` mutation. */
+export declare type UpdateTrackByNodeIdInput = {
+    /** An arbitrary string value with no semantic meaning. Will be included in the
+     * payload verbatim. May be used to track mutations by the client.
+     */
+    clientMutationId?: Maybe<Scalars["String"]>;
+    /** The globally unique `ID` which will identify a single `Track` to be updated. */
+    nodeId: Scalars["ID"];
+    /** An object where the defined keys will be set on the `Track` being updated. */
+    patch: TrackPatch;
+};
+/** All input for the `updateTrack` mutation. */
+export declare type UpdateTrackInput = {
+    /** An arbitrary string value with no semantic meaning. Will be included in the
+     * payload verbatim. May be used to track mutations by the client.
+     */
+    clientMutationId?: Maybe<Scalars["String"]>;
+    /** An object where the defined keys will be set on the `Track` being updated. */
+    patch: TrackPatch;
+    id: Scalars["Int"];
+};
+/** The output of our update `Track` mutation. */
+export declare type UpdateTrackPayload = {
+    __typename?: "UpdateTrackPayload";
+    /** The exact same `clientMutationId` that was provided in the mutation input,
+     * unchanged and unused. May be used by a client to track mutations.
+     */
+    clientMutationId?: Maybe<Scalars["String"]>;
+    /** The `Track` that was updated by this mutation. */
+    track?: Maybe<Track>;
+    /** Our root query field type. Allows us to run any query from our mutation payload. */
+    query?: Maybe<Query>;
+    /** Reads a single `Person` that is related to this `Track`. */
+    person?: Maybe<Person>;
+    /** An edge for our `Track`. May be used by Relay 1. */
+    trackEdge?: Maybe<TracksEdge>;
+};
+/** The output of our update `Track` mutation. */
+export declare type UpdateTrackPayloadTrackEdgeArgs = {
+    orderBy?: Maybe<Array<TracksOrderBy>>;
+};
 export declare type AuthenticateMutationVariables = {
     email: Scalars["String"];
     password: Scalars["String"];
@@ -474,7 +785,7 @@ export declare type CurrentPersonQuery = {
 } & {
     currentPerson: Maybe<{
         __typename?: "Person";
-    } & Pick<Person, "fullName" | "firstName" | "lastName" | "about" | "createdAt" | "updatedAt">>;
+    } & Pick<Person, "id" | "fullName" | "firstName" | "lastName" | "about" | "createdAt" | "updatedAt">>;
 };
 export declare type RegisterUserMutationVariables = {
     firstName: Scalars["String"];
@@ -491,6 +802,20 @@ export declare type RegisterUserMutation = {
         person: Maybe<{
             __typename?: "Person";
         } & Pick<Person, "id" | "fullName" | "firstName" | "lastName" | "about" | "createdAt" | "updatedAt">>;
+    }>;
+};
+export declare type UserTracksQueryVariables = {
+    userId: Scalars["Int"];
+};
+export declare type UserTracksQuery = {
+    __typename?: "Query";
+} & {
+    tracks: Maybe<{
+        __typename?: "TracksConnection";
+    } & Pick<TracksConnection, "totalCount"> & {
+        nodes: Array<Maybe<{
+            __typename?: "Track";
+        } & Pick<Track, "id" | "name" | "image" | "file" | "public" | "createdAt" | "updatedAt" | "publishedAt" | "updatedAt" | "deletedAt">>>;
     }>;
 };
 export declare const AuthenticateDocument: any;
@@ -510,3 +835,13 @@ export declare type RegisterUserComponentProps = Omit<ReactApollo.MutationProps<
 export declare const RegisterUserComponent: (props: Pick<ReactApollo.MutationProps<RegisterUserMutation, RegisterUserMutationVariables>, "client" | "ignoreResults" | "optimisticResponse" | "variables" | "refetchQueries" | "awaitRefetchQueries" | "update" | "children" | "onCompleted" | "onError" | "context" | "fetchPolicy">) => JSX.Element;
 export declare function useRegisterUserMutation(baseOptions?: ReactApolloHooks.MutationHookOptions<RegisterUserMutation, RegisterUserMutationVariables>): [ReactApolloHooks.MutationFn<RegisterUserMutation, RegisterUserMutationVariables>, ReactApolloHooks.MutationResult<RegisterUserMutation>];
 export declare type RegisterUserMutationHookResult = ReturnType<typeof useRegisterUserMutation>;
+export declare const UserTracksDocument: any;
+export declare type UserTracksComponentProps = Omit<ReactApollo.QueryProps<UserTracksQuery, UserTracksQueryVariables>, "query"> & ({
+    variables: UserTracksQueryVariables;
+    skip?: false;
+} | {
+    skip: true;
+});
+export declare const UserTracksComponent: (props: UserTracksComponentProps) => JSX.Element;
+export declare function useUserTracksQuery(baseOptions?: ReactApolloHooks.QueryHookOptions<UserTracksQueryVariables>): ReactApolloHooks.QueryHookResult<UserTracksQuery, UserTracksQueryVariables>;
+export declare type UserTracksQueryHookResult = ReturnType<typeof useUserTracksQuery>;

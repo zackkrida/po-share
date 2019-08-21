@@ -11,6 +11,7 @@ export const AUTHENTICATE = gql`
 export const GET_CURRENT_USER = gql`
   query currentPerson {
     currentPerson {
+      id
       fullName
       firstName
       lastName

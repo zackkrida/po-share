@@ -7,6 +7,7 @@ export const postgraphileOptions = {
   defaultRole: 'po_share_anonymous',
   appendPlugins: [PgSimplifyInflectorPlugin],
   jwtSecret: process.env.JWT_SECRET,
+  exportGqlSchemaPath: `${__dirname}/../schema.gql`,
   jwtPgTypeIdentifier: 'po_share.jwt_token',
 }
 

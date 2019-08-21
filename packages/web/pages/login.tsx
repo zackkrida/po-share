@@ -11,9 +11,12 @@ const LoginPage = ({ loggedInUser }: { loggedInUser: Person }) => {
   const [authenticate] = useAuthenticateMutation()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
 
   const handleSubmit: FormEventHandler = async event => {
     event.preventDefault()
+    // Clear existing errors
+    if (error) setError('')
 
     const { data, errors } = await authenticate({
       variables: {
@@ -22,10 +25,11 @@ const LoginPage = ({ loggedInUser }: { loggedInUser: Person }) => {
       },
     })
 
-    if (!errors && data && data.authenticate && data.authenticate.jwtToken) {
-      setEmail('')
-      setPassword('')
+    // Clear inputs
+    setEmail('')
+    setPassword('')
 
+    if (!errors && data && data.authenticate && data.authenticate.jwtToken) {
       // Store the token in cookie
       document.cookie = cookie.serialize(
         'poToken',
@@ -40,6 +44,9 @@ const LoginPage = ({ loggedInUser }: { loggedInUser: Person }) => {
       client.clearStore().then(() => {
         redirect({}, '/')
       })
+    } else {
+      // our login failed
+      setError('Invalid credentials, please try again.')
     }
   }
 
@@ -47,6 +54,7 @@ const LoginPage = ({ loggedInUser }: { loggedInUser: Person }) => {
     <Layout title="Log in | po-share">
       <h1>Log in to po-share.com!</h1>
       <form onSubmit={handleSubmit}>
+        {error && <div>{error}</div>}
         <label htmlFor="email">
           Email
           <input

@@ -11,7 +11,7 @@ async function main() {
   })
   await createPostGraphileSchema(pgPool, dbOptions.schemas, {
     ...postgraphileOptions,
-    writeCache: `${__dirname}/../dist/postgraphile.cache`,
+    writeCache: `${__dirname}/../postgraphile.cache`,
   })
   await pgPool.end()
 }

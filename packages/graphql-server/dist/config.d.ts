@@ -5,6 +5,7 @@ export declare const postgraphileOptions: {
     defaultRole: string;
     appendPlugins: import("graphile-build").Plugin[];
     jwtSecret: string | undefined;
+    exportGqlSchemaPath: string;
     jwtPgTypeIdentifier: string;
 };
 export declare const dbOptions: {

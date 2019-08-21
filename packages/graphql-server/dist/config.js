@@ -11,6 +11,7 @@ exports.postgraphileOptions = {
     defaultRole: 'po_share_anonymous',
     appendPlugins: [pg_simplify_inflector_1.default],
     jwtSecret: process.env.JWT_SECRET,
+    exportGqlSchemaPath: `${__dirname}/../schema.gql`,
     jwtPgTypeIdentifier: 'po_share.jwt_token',
 };
 exports.dbOptions = {

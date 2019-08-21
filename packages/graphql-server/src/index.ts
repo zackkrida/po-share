@@ -8,6 +8,6 @@ export default postgraphile<NowRequest, NowResponse>(
   dbOptions.schemas,
   {
     ...postgraphileOptions,
-    readCache: `${__dirname}/postgraphile.cache`,
+    readCache: `${__dirname}/../postgraphile.cache`,
   }
 )

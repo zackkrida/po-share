@@ -6,16 +6,12 @@ import Head from 'next/head'
 
 import initApollo from './initApollo'
 
-function parseCookies(req: any = {}, options = {}) {
-  let cooki = cookie.parse(
+// Isomorphic cookie function :)
+const parseCookies = (req: any = {}, options = {}) =>
+  cookie.parse(
     req.headers ? req.headers.cookie || '' : document.cookie,
     options
   )
-
-  console.log(cooki)
-
-  return cooki
-}
 
 export default (App: any) => {
   return class WithData extends React.Component {
