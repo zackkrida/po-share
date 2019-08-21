@@ -2,7 +2,9 @@ export declare const postgraphileOptions: {
     dynamicJson: boolean;
     graphiql: boolean;
     graphqlRoute: string;
-    jwtSecret: string;
+    defaultRole: string;
+    appendPlugins: import("graphile-build").Plugin[];
+    jwtSecret: string | undefined;
     jwtPgTypeIdentifier: string;
 };
 export declare const dbOptions: {

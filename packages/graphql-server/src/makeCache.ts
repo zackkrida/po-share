@@ -2,6 +2,9 @@ import { createPostGraphileSchema } from 'postgraphile'
 import { postgraphileOptions, dbOptions } from './config'
 import { Pool } from 'pg'
 
+/**
+ * Generate a postgraphile.cache file to make our serverless lamda function *much* faster!
+ */
 async function main() {
   const pgPool = new Pool({
     connectionString: `postgres://${dbOptions.user}:${dbOptions.pass}@${dbOptions.host}/${dbOptions.name}`,

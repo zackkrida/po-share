@@ -26,5 +26,8 @@
     "@graphql-codegen/typescript": "1.4.0",
     "@graphql-codegen/typescript-operations": "1.4.0",
     "@graphql-codegen/typescript-react-apollo": "1.4.0"
+  },
+  "volta": {
+    "node": "10.16.3"
   }
 }

@@ -19,5 +19,8 @@
     "@types/dotenv": "^6.1.1",
     "@types/node": "^12.6.9",
     "typescript": "^3.5.3"
+  },
+  "volta": {
+    "node": "10.16.3"
   }
 }

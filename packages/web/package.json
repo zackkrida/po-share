@@ -27,5 +27,8 @@
   },
   "devDependencies": {
     "@types/cookie": "^0.3.3"
+  },
+  "volta": {
+    "node": "10.16.3"
   }
 }

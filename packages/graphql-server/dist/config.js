@@ -1,12 +1,16 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var dotenv_1 = require("dotenv");
-dotenv_1.config({ path: '../../.env' });
+const pg_simplify_inflector_1 = __importDefault(require("@graphile-contrib/pg-simplify-inflector"));
 exports.postgraphileOptions = {
     dynamicJson: true,
     graphiql: false,
     graphqlRoute: '/graphql',
-    jwtSecret: process.env.JWT_SECRET || String(Math.random()),
+    defaultRole: 'po_share_anonymous',
+    appendPlugins: [pg_simplify_inflector_1.default],
+    jwtSecret: process.env.JWT_SECRET,
     jwtPgTypeIdentifier: 'po_share.jwt_token',
 };
 exports.dbOptions = {
@@ -18,3 +22,4 @@ exports.dbOptions = {
         ? process.env.DB_SCHEMAS.split(',')
         : ['app_public'],
 };
+//# sourceMappingURL=config.js.map
