@@ -91,7 +91,7 @@ const RegisterPage = () => {
           onChange={event => setPassword(event.currentTarget.value)}
         />
         <br />
-        <button>Register</button>
+        <button>register</button>
       </form>
     </Layout>
   )

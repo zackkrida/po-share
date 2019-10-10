@@ -40,7 +40,7 @@ export default ({ user }: { user?: Person }) => {
               </>
             ) : (
               <Link href="/register">
-                <a>Register</a>
+                <a>register</a>
               </Link>
             )}
           </ul>

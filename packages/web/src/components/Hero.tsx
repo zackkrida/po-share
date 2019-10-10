@@ -12,7 +12,7 @@ const Hero = ({ children }: HeroProps) => {
           background: linear-gradient(#141618, black);
           color: #f8f8f8;
           padding: 1em 1.5em;
-          min-height: 400px;
+          min-height: 500px;
           padding-bottom: 4em;
           display: flex;
           flex-direction: column;
