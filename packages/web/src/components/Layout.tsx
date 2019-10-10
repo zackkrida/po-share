@@ -15,8 +15,10 @@ export const Layout = ({
     <GlobalStyles />
     <main>{children}</main>
     <style jsx>{`
-      main {
+       {
+        /* main {
         padding: 10px;
+      } */
       }
     `}</style>
   </>

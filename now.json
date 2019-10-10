@@ -13,13 +13,12 @@
   },
   "builds": [
     {
-      "src": "packages/web/package.json",
-      "use": "@now/next"
+      "src": "packages/web/next.config.js",
+      "use": "@now/next@canary"
     },
     {
       "src": "packages/graphql-server/src/index.ts",
-      "use": "@now/node@canary",
-      "watch": []
+      "use": "@now/node@canary"
     }
   ],
   "routes": [

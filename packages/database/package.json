@@ -12,13 +12,13 @@
     "node": "10.x"
   },
   "dependencies": {
-    "dotenv": "^8.0.0",
+    "dotenv": "^8.1.0",
     "postgres-migrations": "^3.0.2"
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
-    "@types/node": "^12.6.9",
-    "typescript": "^3.5.3"
+    "@types/node": "^12.7.11",
+    "typescript": "^3.6.3"
   },
   "volta": {
     "node": "10.16.3"

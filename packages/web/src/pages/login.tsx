@@ -2,9 +2,9 @@ import { Person, useAuthenticateMutation } from '@po-share/queries'
 import cookie from 'cookie'
 import { FormEventHandler, useState } from 'react'
 import { useApolloClient } from 'react-apollo-hooks'
-import { Layout } from '../src/Layout'
-import redirect from '../src/redirect'
-import requireNoAuth from '../src/requireNoAuth'
+import { Layout } from '../components/Layout'
+import redirect from '../components/redirect'
+import requireNoAuth from '../components/requireNoAuth'
 
 const LoginPage = ({ loggedInUser }: { loggedInUser: Person }) => {
   const client = useApolloClient()

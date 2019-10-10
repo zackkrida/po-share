@@ -1,13 +1,13 @@
-import { Layout } from '../src/Layout'
+import { Layout } from '../components/Layout'
 import {
   useRegisterUserMutation,
   useAuthenticateMutation,
 } from '@po-share/queries'
 import cookie from 'cookie'
-import redirect from '../src/redirect'
+import redirect from '../components/redirect'
 import { useState, EventHandler, FormEvent } from 'react'
 import { useApolloClient } from 'react-apollo-hooks'
-import requireNoAuth from '../src/requireNoAuth'
+import requireNoAuth from '../components/requireNoAuth'
 
 const RegisterPage = () => {
   let [firstName, setFirstName] = useState('')
