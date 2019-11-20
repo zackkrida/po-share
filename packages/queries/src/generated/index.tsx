@@ -93,18 +93,12 @@ export type Mutation = {
    __typename?: 'Mutation',
   /** Creates a single `Track`. */
   createTrack?: Maybe<CreateTrackPayload>,
-  /** Updates a single `Person` using its globally unique id and a patch. */
-  updatePersonByNodeId?: Maybe<UpdatePersonPayload>,
   /** Updates a single `Person` using a unique key and a patch. */
   updatePerson?: Maybe<UpdatePersonPayload>,
   /** Updates a single `Person` using a unique key and a patch. */
   updatePersonByUsername?: Maybe<UpdatePersonPayload>,
-  /** Updates a single `Track` using its globally unique id and a patch. */
-  updateTrackByNodeId?: Maybe<UpdateTrackPayload>,
   /** Updates a single `Track` using a unique key and a patch. */
   updateTrack?: Maybe<UpdateTrackPayload>,
-  /** Updates a single `PersonAccount` using its globally unique id and a patch. */
-  updatePersonAccountByNodeId?: Maybe<UpdatePersonAccountPayload>,
   /** Updates a single `PersonAccount` using a unique key and a patch. */
   updatePersonAccount?: Maybe<UpdatePersonAccountPayload>,
   /** Updates a single `PersonAccount` using a unique key and a patch. */
@@ -123,12 +117,6 @@ export type MutationCreateTrackArgs = {
 
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdatePersonByNodeIdArgs = {
-  input: UpdatePersonByNodeIdInput
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdatePersonArgs = {
   input: UpdatePersonInput
 };
@@ -141,20 +129,8 @@ export type MutationUpdatePersonByUsernameArgs = {
 
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdateTrackByNodeIdArgs = {
-  input: UpdateTrackByNodeIdInput
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateTrackArgs = {
   input: UpdateTrackInput
-};
-
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdatePersonAccountByNodeIdArgs = {
-  input: UpdatePersonAccountByNodeIdInput
 };
 
 
@@ -179,12 +155,6 @@ export type MutationAuthenticateArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationRegisterPersonArgs = {
   input: RegisterPersonInput
-};
-
-/** An object with a globally unique `ID`. */
-export type Node = {
-  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
-  nodeId: Scalars['ID'],
 };
 
 /** Information about pagination in a connection. */
@@ -243,10 +213,8 @@ export enum PeopleOrderBy {
   PrimaryKeyDesc = 'PRIMARY_KEY_DESC'
 }
 
-export type Person = Node & {
+export type Person = {
    __typename?: 'Person',
-  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
-  nodeId: Scalars['ID'],
   /** The primary unique identifier for the person. */
   id: Scalars['Int'],
   /** The person’s first name. */
@@ -291,10 +259,8 @@ export type PersonTracksArgs = {
   condition?: Maybe<TrackCondition>
 };
 
-export type PersonAccount = Node & {
+export type PersonAccount = {
    __typename?: 'PersonAccount',
-  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
-  nodeId: Scalars['ID'],
   /** The id of the person associated with this account. */
   personId: Scalars['Int'],
   /** The email address of the person. */
@@ -398,17 +364,13 @@ export type PersonPatch = {
 };
 
 /** The root query type which gives access points into the data universe. */
-export type Query = Node & {
+export type Query = {
    __typename?: 'Query',
   /** 
  * Exposes the root query type nested one level down. This is helpful for Relay 1
    * which can only query top level fields if they are in a particular form.
  **/
   query: Query,
-  /** The root query type must be a `Node` to work well with Relay 1 mutations. This just resolves to `query`. */
-  nodeId: Scalars['ID'],
-  /** Fetches an object given its globally unique `ID`. */
-  node?: Maybe<Node>,
   /** Reads and enables pagination through a set of `Person`. */
   people?: Maybe<PeopleConnection>,
   /** Reads and enables pagination through a set of `Track`. */
@@ -422,18 +384,6 @@ export type Query = Node & {
   personAccountByEmail?: Maybe<PersonAccount>,
   /** Gets the person who was identified by our JWT. */
   currentPerson?: Maybe<Person>,
-  /** Reads a single `Person` using its globally unique `ID`. */
-  personByNodeId?: Maybe<Person>,
-  /** Reads a single `Track` using its globally unique `ID`. */
-  trackByNodeId?: Maybe<Track>,
-  /** Reads a single `PersonAccount` using its globally unique `ID`. */
-  personAccountByNodeId?: Maybe<PersonAccount>,
-};
-
-
-/** The root query type which gives access points into the data universe. */
-export type QueryNodeArgs = {
-  nodeId: Scalars['ID']
 };
 
 
@@ -502,24 +452,6 @@ export type QueryPersonAccountByEmailArgs = {
   email: Scalars['String']
 };
 
-
-/** The root query type which gives access points into the data universe. */
-export type QueryPersonByNodeIdArgs = {
-  nodeId: Scalars['ID']
-};
-
-
-/** The root query type which gives access points into the data universe. */
-export type QueryTrackByNodeIdArgs = {
-  nodeId: Scalars['ID']
-};
-
-
-/** The root query type which gives access points into the data universe. */
-export type QueryPersonAccountByNodeIdArgs = {
-  nodeId: Scalars['ID']
-};
-
 /** All input for the `registerPerson` mutation. */
 export type RegisterPersonInput = {
   /** 
@@ -554,10 +486,8 @@ export type RegisterPersonPayloadPersonEdgeArgs = {
   orderBy?: Maybe<Array<PeopleOrderBy>>
 };
 
-export type Track = Node & {
+export type Track = {
    __typename?: 'Track',
-  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
-  nodeId: Scalars['ID'],
   id: Scalars['Int'],
   personId?: Maybe<Scalars['Int']>,
   name: Scalars['String'],
@@ -686,19 +616,6 @@ export type UpdatePersonAccountByEmailInput = {
   email: Scalars['String'],
 };
 
-/** All input for the `updatePersonAccountByNodeId` mutation. */
-export type UpdatePersonAccountByNodeIdInput = {
-  /** 
- * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
- **/
-  clientMutationId?: Maybe<Scalars['String']>,
-  /** The globally unique `ID` which will identify a single `PersonAccount` to be updated. */
-  nodeId: Scalars['ID'],
-  /** An object where the defined keys will be set on the `PersonAccount` being updated. */
-  patch: PersonAccountPatch,
-};
-
 /** All input for the `updatePersonAccount` mutation. */
 export type UpdatePersonAccountInput = {
   /** 
@@ -734,19 +651,6 @@ export type UpdatePersonAccountPayload = {
 /** The output of our update `PersonAccount` mutation. */
 export type UpdatePersonAccountPayloadPersonAccountEdgeArgs = {
   orderBy?: Maybe<Array<PersonAccountsOrderBy>>
-};
-
-/** All input for the `updatePersonByNodeId` mutation. */
-export type UpdatePersonByNodeIdInput = {
-  /** 
- * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
- **/
-  clientMutationId?: Maybe<Scalars['String']>,
-  /** The globally unique `ID` which will identify a single `Person` to be updated. */
-  nodeId: Scalars['ID'],
-  /** An object where the defined keys will be set on the `Person` being updated. */
-  patch: PersonPatch,
 };
 
 /** All input for the `updatePersonByUsername` mutation. */
@@ -794,19 +698,6 @@ export type UpdatePersonPayload = {
 /** The output of our update `Person` mutation. */
 export type UpdatePersonPayloadPersonEdgeArgs = {
   orderBy?: Maybe<Array<PeopleOrderBy>>
-};
-
-/** All input for the `updateTrackByNodeId` mutation. */
-export type UpdateTrackByNodeIdInput = {
-  /** 
- * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
- **/
-  clientMutationId?: Maybe<Scalars['String']>,
-  /** The globally unique `ID` which will identify a single `Track` to be updated. */
-  nodeId: Scalars['ID'],
-  /** An object where the defined keys will be set on the `Track` being updated. */
-  patch: TrackPatch,
 };
 
 /** All input for the `updateTrack` mutation. */

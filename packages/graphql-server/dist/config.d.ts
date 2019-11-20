@@ -4,6 +4,7 @@ export declare const postgraphileOptions: {
     graphqlRoute: string;
     defaultRole: string;
     appendPlugins: import("graphile-build").Plugin[];
+    skipPlugins: import("graphile-build").Plugin[];
     jwtSecret: string | undefined;
     exportGqlSchemaPath: string;
     jwtPgTypeIdentifier: string;

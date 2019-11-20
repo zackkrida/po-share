@@ -4,12 +4,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const pg_simplify_inflector_1 = __importDefault(require("@graphile-contrib/pg-simplify-inflector"));
+const graphile_build_1 = require("graphile-build");
 exports.postgraphileOptions = {
     dynamicJson: true,
     graphiql: false,
     graphqlRoute: '/graphql',
     defaultRole: 'po_share_anonymous',
     appendPlugins: [pg_simplify_inflector_1.default],
+    skipPlugins: [graphile_build_1.NodePlugin],
     jwtSecret: process.env.JWT_SECRET,
     exportGqlSchemaPath: `${__dirname}/../schema.gql`,
     jwtPgTypeIdentifier: 'po_share.jwt_token',

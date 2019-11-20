@@ -14,11 +14,11 @@
   "builds": [
     {
       "src": "packages/web/next.config.js",
-      "use": "@now/next@canary"
+      "use": "@now/next"
     },
     {
       "src": "packages/graphql-server/src/index.ts",
-      "use": "@now/node@canary"
+      "use": "@now/node"
     }
   ],
   "routes": [

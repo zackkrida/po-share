@@ -14,12 +14,12 @@
     "start": "node -r dotenv/config dist dotenv_config_path=../../.env"
   },
   "devDependencies": {
-    "@now/node": "^1.0.1",
-    "typescript": "^3.6.3"
+    "@now/node": "^1.1.2",
+    "typescript": "^3.7.2"
   },
   "dependencies": {
     "@graphile-contrib/pg-simplify-inflector": "^5.0.0-beta.1",
-    "dotenv": "^8.1.0",
+    "dotenv": "^8.2.0",
     "postgraphile": "^4.4.4"
   },
   "volta": {

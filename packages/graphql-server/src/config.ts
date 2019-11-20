@@ -1,4 +1,5 @@
 import PgSimplifyInflectorPlugin from '@graphile-contrib/pg-simplify-inflector'
+import { NodePlugin } from 'graphile-build'
 
 export const postgraphileOptions = {
   dynamicJson: true,
@@ -6,6 +7,7 @@ export const postgraphileOptions = {
   graphqlRoute: '/graphql',
   defaultRole: 'po_share_anonymous',
   appendPlugins: [PgSimplifyInflectorPlugin],
+  skipPlugins: [NodePlugin],
   jwtSecret: process.env.JWT_SECRET,
   exportGqlSchemaPath: `${__dirname}/../schema.gql`,
   jwtPgTypeIdentifier: 'po_share.jwt_token',
