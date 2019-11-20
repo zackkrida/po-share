@@ -1,11 +1,7 @@
 import Link from 'next/link'
-import { useCurrentPersonQuery, Person } from '@po-share/queries'
-import { useApolloClient } from 'react-apollo-hooks'
-import { logout } from '../components/logout'
+import { Person } from '@po-share/queries'
 
-export default ({ user }: { user?: Person }) => {
-  const client = useApolloClient()
-
+export default ({ user }: { user?: Pick<Person, 'firstName'> }) => {
   return (
     <>
       <header>
@@ -25,23 +21,32 @@ export default ({ user }: { user?: Person }) => {
             {user ? (
               <>
                 <li>hi&nbsp;{user.firstName.toLowerCase()}.</li>
-                <li>
+                {/* <li>
                   <a
                     href="/logout"
                     style={{ cursor: 'pointer' }}
                     onClick={event => {
                       event.preventDefault()
-                      logout(client, '/register')
+                      logout(apolloClient, '/register')
                     }}
                   >
                     logout?
                   </a>
-                </li>
+                </li> */}
               </>
             ) : (
-              <Link href="/register">
-                <a>register</a>
-              </Link>
+              <>
+                <li>
+                  <Link href="/register">
+                    <a>register</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/login">
+                    <a>log in</a>
+                  </Link>
+                </li>
+              </>
             )}
           </ul>
         </nav>
@@ -75,7 +80,7 @@ export default ({ user }: { user?: Person }) => {
         a {
           color: inherit;
           text-decoration: none;
-          transition: 0.2s ease-in all;
+          transition: 0.1s ease-in all;
         }
 
         a:hover,

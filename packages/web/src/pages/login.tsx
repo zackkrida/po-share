@@ -3,8 +3,8 @@ import cookie from 'cookie'
 import { FormEventHandler, useState } from 'react'
 import { useApolloClient } from 'react-apollo-hooks'
 import { Layout } from '../components/Layout'
-import redirect from '../components/redirect'
-import requireNoAuth from '../components/requireNoAuth'
+import redirect from '../lib/redirect'
+import requireNoAuth from '../lib/requireUnauth'
 
 const LoginPage = ({ loggedInUser }: { loggedInUser: Person }) => {
   const client = useApolloClient()
@@ -15,43 +15,50 @@ const LoginPage = ({ loggedInUser }: { loggedInUser: Person }) => {
 
   const handleSubmit: FormEventHandler = async event => {
     event.preventDefault()
+
     // Clear existing errors
     if (error) setError('')
 
-    const { data, errors } = await authenticate({
-      variables: {
-        email,
-        password,
-      },
-    })
-
-    // Clear inputs
-    setEmail('')
-    setPassword('')
-
-    if (!errors && data && data.authenticate && data.authenticate.jwtToken) {
-      // Store the token in cookie
-      document.cookie = cookie.serialize(
-        'poToken',
-        data.authenticate.jwtToken,
-        {
-          maxAge: 30 * 24 * 60 * 60, // 30 days
-        }
-      )
-
-      // Force a reload of all the current queries now that the user is
-      // logged in
-      client.clearStore().then(() => {
-        redirect({}, '/')
+    try {
+      const { data, errors } = await authenticate({
+        variables: {
+          email,
+          password,
+        },
       })
-    } else {
-      // our login failed
-      setError('Invalid credentials, please try again.')
+
+      console.log(data, errors)
+
+      // Clear inputs
+      setEmail('')
+      setPassword('')
+
+      if (!errors && data && data.authenticate && data.authenticate.jwtToken) {
+        // Store the token in cookie
+        document.cookie = cookie.serialize(
+          'poToken',
+          data.authenticate.jwtToken,
+          {
+            maxAge: 30 * 24 * 60 * 60, // 30 days
+          }
+        )
+
+        // Force a reload of all the current queries now that the user is
+        // logged in
+        client.clearStore().then(() => {
+          redirect({}, '/')
+        })
+      } else {
+        // our login failed
+        setError('Invalid credentials, please try again.')
+      }
+    } catch (error) {
+      setError('Something went wrong, please try again.')
     }
   }
 
   return (
-    <Layout title="Log in | po-share">
+    <Layout title="log in | po-share">
       <h1>Log in to po-share.com!</h1>
       <form onSubmit={handleSubmit}>
         {error && <div>{error}</div>}
@@ -76,7 +83,9 @@ const LoginPage = ({ loggedInUser }: { loggedInUser: Person }) => {
             onChange={event => setPassword(event.currentTarget.value)}
           />
         </label>
-        <button type="submit">Log In</button>
+        <button type="submit" onClick={e => console.log(e)}>
+          Log In
+        </button>
       </form>
     </Layout>
   )

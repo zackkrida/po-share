@@ -4,10 +4,10 @@ import {
   useAuthenticateMutation,
 } from '@po-share/queries'
 import cookie from 'cookie'
-import redirect from '../components/redirect'
+import redirect from '../lib/redirect'
 import { useState, EventHandler, FormEvent } from 'react'
 import { useApolloClient } from 'react-apollo-hooks'
-import requireNoAuth from '../components/requireNoAuth'
+import requireNoAuth from '../lib/requireUnauth'
 
 const RegisterPage = () => {
   let [firstName, setFirstName] = useState('')
