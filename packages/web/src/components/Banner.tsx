@@ -1,4 +1,8 @@
-export const Banner = ({ theme = "light", children }: BannerProps) => (
+export const Banner = ({
+  theme = 'light',
+  align = 'left',
+  children,
+}: BannerProps) => (
   <div className="banner">
     {children}
     <style jsx>{`
@@ -11,16 +15,21 @@ export const Banner = ({ theme = "light", children }: BannerProps) => (
     `}</style>
     <style jsx>{`
       .banner {
-        background: ${theme === "accent"
+        background: ${theme === 'accent'
           ? `linear-gradient(#3c62f8, #1142db)`
           : `#f8f8f8`};
-        color: #141618;
+      }
+    `}</style>
+    <style jsx>{`
+      .banner {
+        text-align: ${align};
       }
     `}</style>
   </div>
-);
+)
 
 type BannerProps = {
-  children: React.ReactNode;
-  theme?: "light" | "accent";
-};
+  children: React.ReactNode
+  theme?: Theme.Palette
+  align?: Theme.Alignment
+}

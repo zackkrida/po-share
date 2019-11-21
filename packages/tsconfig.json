@@ -1,5 +1,9 @@
 {
   "files": [],
+  "compilerOptions": {
+    "target": "es2017",
+    "forceConsistentCasingInFileNames": true
+  },
   "references": [
     { "path": "database" },
     { "path": "queries" },

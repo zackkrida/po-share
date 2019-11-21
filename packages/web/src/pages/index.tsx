@@ -1,8 +1,9 @@
-import { Person, useCurrentPersonQuery } from '@po-share/queries'
 import { Layout } from '../components/Layout'
 import Hero from '../components/Hero'
 import { Searchbar } from '../components/Searchbar'
 import { Banner } from '../components/Banner'
+import { requireUnauth } from '../lib/requireUnauth'
+import { withApollo } from '../lib/apollo'
 
 const HomePage = () => {
   return (
@@ -27,15 +28,11 @@ const HomePage = () => {
         </ul>
       </Banner>
 
-      <Banner>
-        <h2>explore the newest uploads for your pocket operators</h2>
-        <ul>
-          <li>Woah</li>
-        </ul>
+      <Banner align="center">
+        <h2>here's another one of these damn banners</h2>
+        <p>This one is centered—pretty great, eh?</p>
+        <p>I thought you'd like it.</p>
       </Banner>
-
-      {/* <h2>User tracks:</h2>
-      <UserTracks id={loggedInUser.id} /> */}
 
       <style jsx>{`
         h1 {
@@ -68,4 +65,6 @@ const HomePage = () => {
   )
 }
 
-export default HomePage
+HomePage.getInitialProps = requireUnauth('/dashboard')
+
+export default withApollo(HomePage)

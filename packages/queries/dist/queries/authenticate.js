@@ -1,11 +1,50 @@
 "use strict";
-var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
-    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
-    return cooked;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var graphql_tag_1 = require("graphql-tag");
-exports.AUTHENTICATE = graphql_tag_1.default(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  mutation authenticate($email: String!, $password: String!) {\n    authenticate(input: { email: $email, password: $password }) {\n      jwtToken\n    }\n  }\n"], ["\n  mutation authenticate($email: String!, $password: String!) {\n    authenticate(input: { email: $email, password: $password }) {\n      jwtToken\n    }\n  }\n"])));
-exports.GET_CURRENT_USER = graphql_tag_1.default(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  query currentPerson {\n    currentPerson {\n      id\n      fullName\n      firstName\n      lastName\n      about\n      createdAt\n      updatedAt\n    }\n  }\n"], ["\n  query currentPerson {\n    currentPerson {\n      id\n      fullName\n      firstName\n      lastName\n      about\n      createdAt\n      updatedAt\n    }\n  }\n"])));
-exports.REGISTER_USER = graphql_tag_1.default(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n  mutation registerUser(\n    $firstName: String!\n    $lastName: String!\n    $email: String!\n    $password: String!\n  ) {\n    registerPerson(\n      input: {\n        firstName: $firstName\n        lastName: $lastName\n        email: $email\n        password: $password\n      }\n    ) {\n      person {\n        id\n        fullName\n        firstName\n        lastName\n        about\n        createdAt\n        updatedAt\n      }\n    }\n  }\n"], ["\n  mutation registerUser(\n    $firstName: String!\n    $lastName: String!\n    $email: String!\n    $password: String!\n  ) {\n    registerPerson(\n      input: {\n        firstName: $firstName\n        lastName: $lastName\n        email: $email\n        password: $password\n      }\n    ) {\n      person {\n        id\n        fullName\n        firstName\n        lastName\n        about\n        createdAt\n        updatedAt\n      }\n    }\n  }\n"])));
-var templateObject_1, templateObject_2, templateObject_3;
+const graphql_tag_1 = require("graphql-tag");
+exports.AUTHENTICATE = graphql_tag_1.default `
+  mutation authenticate($email: String!, $password: String!) {
+    authenticate(input: { email: $email, password: $password }) {
+      jwtToken
+    }
+  }
+`;
+exports.GET_CURRENT_USER = graphql_tag_1.default `
+  query currentPerson {
+    currentPerson {
+      id
+      fullName
+      firstName
+      lastName
+      about
+      createdAt
+      updatedAt
+    }
+  }
+`;
+exports.REGISTER_USER = graphql_tag_1.default `
+  mutation registerUser(
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+    $password: String!
+  ) {
+    registerPerson(
+      input: {
+        firstName: $firstName
+        lastName: $lastName
+        email: $email
+        password: $password
+      }
+    ) {
+      person {
+        id
+        fullName
+        firstName
+        lastName
+        about
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`;

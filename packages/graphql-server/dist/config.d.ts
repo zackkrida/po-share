@@ -5,14 +5,14 @@ export declare const postgraphileOptions: {
     defaultRole: string;
     appendPlugins: import("graphile-build").Plugin[];
     skipPlugins: import("graphile-build").Plugin[];
-    jwtSecret: string | undefined;
+    jwtSecret: string;
     exportGqlSchemaPath: string;
     jwtPgTypeIdentifier: string;
 };
 export declare const dbOptions: {
-    user: string | undefined;
-    pass: string | undefined;
-    host: string | undefined;
-    name: string | undefined;
+    user: string;
+    pass: string;
+    host: string;
+    name: string;
     schemas: string[];
 };

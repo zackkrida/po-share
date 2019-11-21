@@ -7,7 +7,8 @@ import cookie from 'cookie'
 import redirect from '../lib/redirect'
 import { useState, EventHandler, FormEvent } from 'react'
 import { useApolloClient } from 'react-apollo-hooks'
-import requireNoAuth from '../lib/requireUnauth'
+import { requireUnauth } from '../lib/requireUnauth'
+import { withApollo } from '../lib/apollo'
 
 const RegisterPage = () => {
   let [firstName, setFirstName] = useState('')
@@ -97,6 +98,6 @@ const RegisterPage = () => {
   )
 }
 
-RegisterPage.getInitialProps = requireNoAuth
+RegisterPage.getInitialProps = requireUnauth('/dashboard')
 
-export default RegisterPage
+export default withApollo(RegisterPage)

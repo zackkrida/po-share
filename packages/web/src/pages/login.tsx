@@ -4,7 +4,8 @@ import { FormEventHandler, useState } from 'react'
 import { useApolloClient } from 'react-apollo-hooks'
 import { Layout } from '../components/Layout'
 import redirect from '../lib/redirect'
-import requireNoAuth from '../lib/requireUnauth'
+import { requireUnauth } from '../lib/requireUnauth'
+import { withApollo } from '../lib/apollo'
 
 const LoginPage = ({ loggedInUser }: { loggedInUser: Person }) => {
   const client = useApolloClient()
@@ -91,6 +92,6 @@ const LoginPage = ({ loggedInUser }: { loggedInUser: Person }) => {
   )
 }
 
-LoginPage.getInitialProps = requireNoAuth
+LoginPage.getInitialProps = requireUnauth('/dashboard')
 
-export default LoginPage
+export default withApollo(LoginPage)
