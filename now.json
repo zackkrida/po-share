@@ -19,10 +19,6 @@
     {
       "src": "packages/graphql-server/src/index.ts",
       "use": "@now/node"
-    },
-    {
-      "src": "packages/job-queue/src/index.ts",
-      "use": "@now/node"
     }
   ],
   "routes": [

@@ -1,7 +1,7 @@
 import { Person, useAuthenticateMutation } from '@po-share/queries'
 import cookie from 'cookie'
 import { FormEventHandler, useState } from 'react'
-import { useApolloClient } from 'react-apollo-hooks'
+import { useApolloClient } from '@apollo/react-hooks'
 import { Layout } from '../components/Layout'
 import redirect from '../lib/redirect'
 import { requireUnauth } from '../lib/requireUnauth'

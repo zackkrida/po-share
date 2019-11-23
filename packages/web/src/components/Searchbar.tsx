@@ -1,8 +1,11 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent, useState, useEffect } from 'react'
 import Router from 'next/router'
 
-export const Searchbar = () => {
-  let [query, setQuery] = useState<string>('')
+export const Searchbar = ({ initialQuery = '' }: SearchbarProps) => {
+  let [query, setQuery] = useState<string>(initialQuery)
+
+  // update if/when query updates
+  useEffect(() => setQuery(initialQuery), [initialQuery])
 
   // Send the user to the search result page, passing their search query
   const handleSubmit = (event: FormEvent) => {
@@ -111,3 +114,7 @@ s-17-7.626-17-17S14.61,6,23.984,6z"
     `}</style>
   </svg>
 )
+
+interface SearchbarProps {
+  initialQuery?: string
+}

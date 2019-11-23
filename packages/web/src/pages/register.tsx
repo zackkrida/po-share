@@ -6,7 +6,7 @@ import {
 import cookie from 'cookie'
 import redirect from '../lib/redirect'
 import { useState, EventHandler, FormEvent } from 'react'
-import { useApolloClient } from 'react-apollo-hooks'
+import { useApolloClient } from '@apollo/react-hooks'
 import { requireUnauth } from '../lib/requireUnauth'
 import { withApollo } from '../lib/apollo'
 
