@@ -1,7 +1,22 @@
+import { FormEvent, useState } from 'react'
+import Router from 'next/router'
+
 export const Searchbar = () => {
+  let [query, setQuery] = useState<string>('')
+
+  // Send the user to the search result page, passing their search query
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault()
+    if (!query) return // early return if the search input is blank
+
+    Router.push(`/search/${encodeURIComponent(query)}`)
+  }
+
   return (
-    <form className="Searchbar">
+    <form action="" className="Searchbar" onSubmit={handleSubmit}>
       <input
+        value={query}
+        onChange={event => setQuery(event.target.value)}
         autoFocus
         type="text"
         placeholder="Search for anything, like 'techno beats, or sample'"
@@ -27,24 +42,31 @@ export const Searchbar = () => {
           border: 4px solid #fff;
         }
 
-        button[type="submit"] {
+        button[type='submit'] {
+          appearance: none;
+          background: transparent;
+          border: 0;
+          color: #000;
+          cursor: pointer;
+          padding: 1em;
           position: absolute;
           right: 1em;
           top: 50%;
           transform: translateY(-50%);
-          appearance: none;
-          border: 0;
-          background: transparent;
         }
 
-        svg:hover {
-          cursor: pointer;
-          fill: blue;
+        button[type='submit']:hover,
+        button[type='submit']:focus {
+          color: blue;
         }
 
         .Searchbar:hover,
         .Searchbar:focus-within {
           box-shadow: 0 6px 20px 0 rgba(7, 7, 7, 0.35);
+          transform: scale(1.04);
+           {
+            /* border-color: blue; */
+          }
         }
 
         input {
@@ -61,25 +83,31 @@ export const Searchbar = () => {
           opacity: 1;
           appearance: none;
         }
+
+        input:focus {
+          outline: 0;
+        }
       `}</style>
     </form>
-  );
-};
+  )
+}
 
 const SearchSvg = (props: unknown) => (
-  <svg
-    {...props}
-    x="0px"
-    y="0px"
-    width="40"
-    viewBox="0 0 56.966 56.966"
-    contentStyleType="enableBackground: new 0 0 56.966 56.966"
-  >
+  <svg {...props} viewBox="0 0 56.966 56.966">
     <path
       d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23
 s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92
 c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17
 s-17-7.626-17-17S14.61,6,23.984,6z"
     />
+    <style jsx>{`
+      svg {
+        fill: currentcolor;
+      }
+
+      svg {
+        width: 40px;
+      }
+    `}</style>
   </svg>
-);
+)

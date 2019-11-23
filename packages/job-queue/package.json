@@ -1,0 +1,23 @@
+{
+  "name": "@po-share/job-queue",
+  "version": "1.0.0",
+  "engines": {
+    "node": "10.x"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "dev": "node -r dotenv/config dist dotenv_config_path=../../.env",
+    "start": "node -r dotenv/config dist dotenv_config_path=../../.env"
+  },
+  "volta": {
+    "node": "10.16.3"
+  },
+  "dependencies": {
+    "graphile-worker": "^0.2.0"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "@types/node": "^12.12.11",
+    "typescript": "^3.7.2"
+  }
+}
