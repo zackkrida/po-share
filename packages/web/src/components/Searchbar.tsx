@@ -34,7 +34,7 @@ export const Searchbar = ({ initialQuery = '' }: SearchbarProps) => {
           margin: 0 auto;
           display: block;
           padding: 1em;
-          background-color: #fff;
+          background-color: var(--color-bg-light);
           position: absolute;
           top: 520px;
           left: 0;
@@ -42,14 +42,14 @@ export const Searchbar = ({ initialQuery = '' }: SearchbarProps) => {
           border-radius: 8px;
           box-shadow: 0 11px 24px 0 rgba(7, 7, 7, 0.25);
           transition: 0.1s all ease-in-out;
-          border: 4px solid #fff;
+          border: 4px solid var(--color-bg-light);
         }
 
         button[type='submit'] {
           appearance: none;
           background: transparent;
           border: 0;
-          color: #000;
+          color: var(--color-dark);
           cursor: pointer;
           padding: 1em;
           position: absolute;
@@ -60,7 +60,7 @@ export const Searchbar = ({ initialQuery = '' }: SearchbarProps) => {
 
         button[type='submit']:hover,
         button[type='submit']:focus {
-          color: blue;
+          color: var(--color-accent);
         }
 
         .Searchbar:hover,
@@ -68,7 +68,7 @@ export const Searchbar = ({ initialQuery = '' }: SearchbarProps) => {
           box-shadow: 0 6px 20px 0 rgba(7, 7, 7, 0.35);
           transform: scale(1.04);
            {
-            /* border-color: blue; */
+            /* border-color: var(--color-accent); */
           }
         }
 

@@ -8,7 +8,7 @@ export const Banner = ({
     <style jsx>{`
       .banner {
         background: #f8f8f8;
-        color: #141618;
+        color: var(--color-dark-100);
         font-size: 1.2em;
         padding: 6em 1.5em 4em;
       }
@@ -16,7 +16,7 @@ export const Banner = ({
     <style jsx>{`
       .banner {
         background: ${theme === 'accent'
-          ? `linear-gradient(#3c62f8, #1142db)`
+          ? `linear-gradient(#3c62f8, var(--color-accent))`
           : `#f8f8f8`};
       }
     `}</style>

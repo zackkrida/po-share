@@ -54,7 +54,7 @@ export default ({ user }: { user?: Pick<Person, 'firstName'> }) => {
       <style jsx>{`
         header {
           padding: 1em 1.5em;
-          background-color: #141618;
+          background-color: var(--color-dark-100);
           display: flex;
           justify-content: space-between;
           align-items: center;

@@ -369,6 +369,14 @@ export default (): JSX.Element => (
 
       * {
         margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      :root {
+        --color-accent: #1142db;
+        --color-bg-light: #fff;
+        --color-dark: #000;
+        --color-dark-100: #141618;
       }
     `}
   </style>

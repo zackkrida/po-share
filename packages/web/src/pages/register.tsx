@@ -9,6 +9,7 @@ import { useState, EventHandler, FormEvent } from 'react'
 import { useApolloClient } from '@apollo/react-hooks'
 import { requireUnauth } from '../lib/requireUnauth'
 import { withApollo } from '../lib/apollo'
+import { Stack } from '../components/Stack'
 
 const RegisterPage = () => {
   let [firstName, setFirstName] = useState('')
@@ -63,6 +64,18 @@ const RegisterPage = () => {
   return (
     <Layout title="Sign up now to get started | po-share">
       <h1>Register for po-share.com!</h1>
+
+      <div style={{ border: '1px solid red' }}>
+        <Stack space="large">
+          <p>WOW</p>
+          <div>AWESOME</div>
+          <ul>
+            <li>WOW</li>
+            <li>WOW</li>
+          </ul>
+        </Stack>
+      </div>
+
       <form onSubmit={handleSubmit}>
         <input
           name="firstName"

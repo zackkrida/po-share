@@ -4,6 +4,8 @@ import { Searchbar } from '../components/Searchbar'
 import { Banner } from '../components/Banner'
 import { requireUnauth } from '../lib/requireUnauth'
 import { withApollo } from '../lib/apollo'
+import { Stack } from '../components/Stack'
+import { Button } from '../components/Button'
 
 const HomePage = () => {
   return (
@@ -28,10 +30,12 @@ const HomePage = () => {
         </ul>
       </Banner>
 
-      <Banner align="center">
-        <h2>here's another one of these damn banners</h2>
-        <p>This one is centered—pretty great, eh?</p>
-        <p>I thought you'd like it.</p>
+      <Banner align="right">
+        <Stack space="small">
+          <h2>here's another one of these damn banners</h2>
+          <p>This one is centered—pretty great, eh?</p>
+          <Button>I thought you'd like it.</Button>
+        </Stack>
       </Banner>
 
       <style jsx>{`

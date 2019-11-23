@@ -2,14 +2,15 @@ import * as React from 'react'
 
 const Hero = ({ children }: HeroProps) => {
   return (
-    <>
-      <section>
-        <div>{children}</div>
-      </section>
+    <section>
+      <div>{children}</div>
       <style jsx>{`
         section {
           position: relative;
-          background: linear-gradient(#141618, black);
+          background: linear-gradient(
+            var(--color-dark-100) 3%,
+            var(--color-dark)
+          );
           color: #f8f8f8;
           padding: 1em 1.5em;
           min-height: 500px;
@@ -37,7 +38,7 @@ const Hero = ({ children }: HeroProps) => {
           color: #3c62f8;
         }
       `}</style>
-    </>
+    </section>
   )
 }
 
