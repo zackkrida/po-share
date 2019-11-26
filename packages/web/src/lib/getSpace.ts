@@ -1,9 +1,10 @@
 // Spacing helper function for styles that need a spacing prop
 export const SpaceMap = {
-  small: '1em',
-  medium: '2em',
-  large: '3em',
-  xlarge: '5em',
+  small: '1rem',
+  medium: '2rem',
+  large: '3rem',
+  xlarge: '5rem',
+  xxlarge: '7.5rem',
 }
 
 export function getSpace(space: Space) {

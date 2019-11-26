@@ -4,6 +4,6 @@ declare interface CustomContext extends NextPageContext {
 
 // Some Reuseable Prop Types
 namespace Theme {
-  declare type Palette = 'accent' | 'light'
+  declare type Palette = 'accent' | 'light' | 'dark'
   declare type Alignment = 'left' | 'right' | 'center'
 }

@@ -375,8 +375,25 @@ export default (): JSX.Element => (
       :root {
         --color-accent: #1142db;
         --color-bg-light: #fff;
+        --color-light: #f8f8f8;
         --color-dark: #000;
         --color-dark-100: #141618;
+      }
+
+      #__next {
+        display: grid;
+        min-height: 100vh;
+        grid-template-rows: auto 1fr auto;
+      }
+
+      button {
+        appearance: none;
+        border: none;
+        background: none;
+        color: inherit;
+      }
+      button:hover {
+        cursor: pointer;
       }
     `}
   </style>

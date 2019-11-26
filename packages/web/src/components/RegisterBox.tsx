@@ -1,4 +1,4 @@
-import { Layout } from '../components/Layout'
+import { Layout } from './Layout'
 import {
   useRegisterUserMutation,
   useAuthenticateMutation,
@@ -9,9 +9,11 @@ import { useState, EventHandler, FormEvent } from 'react'
 import { useApolloClient } from '@apollo/react-hooks'
 import { requireUnauth } from '../lib/requireUnauth'
 import { withApollo } from '../lib/apollo'
-import { Stack } from '../components/Stack'
+import { Stack } from './Stack'
+import { Button } from './Button'
+import { TextInput } from './TextInput'
 
-const RegisterPage = () => {
+export const RegisterBox = () => {
   let [firstName, setFirstName] = useState('')
   let [lastName, setLastName] = useState('')
   let [email, setEmail] = useState('')
@@ -62,55 +64,32 @@ const RegisterPage = () => {
   }
 
   return (
-    <Layout title="Sign up now to get started | po-share">
-      <h1>Register for po-share.com!</h1>
-
-      <div style={{ border: '1px solid red' }}>
-        <Stack space="large">
-          <p>WOW</p>
-          <div>AWESOME</div>
-          <ul>
-            <li>WOW</li>
-            <li>WOW</li>
-          </ul>
-        </Stack>
-      </div>
-
-      <form onSubmit={handleSubmit}>
-        <input
-          name="firstName"
-          placeholder="First Name"
+    <form onSubmit={handleSubmit}>
+      <Stack space="medium">
+        <h1>Register for po-share.com!</h1>
+        <TextInput
+          label="First Name"
           value={firstName}
           onChange={event => setFirstName(event.currentTarget.value)}
         />
-        <input
-          name="lastName"
-          placeholder="Last Name"
+        <TextInput
+          label="Last Name"
           value={lastName}
           onChange={event => setLastName(event.currentTarget.value)}
         />
-        <br />
-        <input
-          name="email"
-          placeholder="Email"
+        <TextInput
+          label="Email"
           value={email}
           onChange={event => setEmail(event.currentTarget.value)}
         />
-        <br />
-        <input
-          name="password"
-          placeholder="Password"
+        <TextInput
+          label="Password"
           type="password"
           value={password}
           onChange={event => setPassword(event.currentTarget.value)}
         />
-        <br />
-        <button>register</button>
-      </form>
-    </Layout>
+        <Button type="submit">register</Button>
+      </Stack>
+    </form>
   )
 }
-
-RegisterPage.getInitialProps = requireUnauth('/dashboard')
-
-export default withApollo(RegisterPage)

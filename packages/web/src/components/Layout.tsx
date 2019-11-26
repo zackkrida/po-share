@@ -2,6 +2,7 @@ import Header from './Header'
 import { Person } from '@po-share/queries'
 import GlobalStyles from './GlobalStyles'
 import Head from './Head'
+import { Box } from './Box'
 
 export const Layout = ({
   user = null,
@@ -14,6 +15,15 @@ export const Layout = ({
     <Header user={user} />
     <GlobalStyles />
     <main>{children}</main>
+    <footer>
+      <Box theme="dark">
+        <h2>Footer</h2>
+        <ul>
+          <li>Things go here.</li>
+          <li>Yes, they do.</li>
+        </ul>
+      </Box>
+    </footer>
   </>
 )
 

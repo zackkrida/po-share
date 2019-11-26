@@ -1,7 +1,15 @@
+import '@reach/dialog/styles.css'
 import Link from 'next/link'
 import { Person } from '@po-share/queries'
+import { useState } from 'react'
+import { Dialog } from '@reach/dialog'
+import { SigninBox } from './SignInBox'
+import { RegisterBox } from './RegisterBox'
 
 export default ({ user }: { user?: Pick<Person, 'firstName'> }) => {
+  const [loginBox, setSigninBox] = useState<'closed' | 'open'>('closed')
+  const [registerBox, setRegisterBox] = useState<'closed' | 'open'>('closed')
+
   return (
     <>
       <header>
@@ -37,14 +45,26 @@ export default ({ user }: { user?: Pick<Person, 'firstName'> }) => {
             ) : (
               <>
                 <li>
-                  <Link href="/register">
-                    <a>register</a>
-                  </Link>
+                  <button onClick={() => setRegisterBox('open')}>
+                    register
+                  </button>
+                  <Dialog
+                    aria-label="Register for a p.o. share account"
+                    isOpen={registerBox === 'open'}
+                    onDismiss={() => setRegisterBox('closed')}
+                  >
+                    <RegisterBox />
+                  </Dialog>
                 </li>
                 <li>
-                  <Link href="/login">
-                    <a>log in</a>
-                  </Link>
+                  <button onClick={() => setSigninBox('open')}>sign in</button>
+                  <Dialog
+                    aria-label="Sign in to p.o. share with your existing account."
+                    isOpen={loginBox === 'open'}
+                    onDismiss={() => setSigninBox('closed')}
+                  >
+                    <SigninBox />
+                  </Dialog>
                 </li>
               </>
             )}

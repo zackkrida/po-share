@@ -1,6 +1,11 @@
-export const Button = ({ children }: ButtonProps) => {
+import * as React from 'react'
+
+export const Button = ({
+  children,
+  ...props
+}: JSX.IntrinsicElements['button']) => {
   return (
-    <button className="button">
+    <button className="button" {...props}>
       {children}
       <style jsx>{`
         .button {
@@ -12,15 +17,12 @@ export const Button = ({ children }: ButtonProps) => {
           transition: 0.1s all ease-in;
         }
 
-        .button:hover {
+        .button:hover,
+        .button:focus {
           cursor: pointer;
           transform: scale(1.04);
         }
       `}</style>
     </button>
   )
-}
-
-interface ButtonProps {
-  children: React.ReactNode
 }

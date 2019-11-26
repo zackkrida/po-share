@@ -1,15 +1,16 @@
-import { Person, useAuthenticateMutation } from '@po-share/queries'
 import cookie from 'cookie'
+import { Person, useAuthenticateMutation } from '@po-share/queries'
 import { FormEventHandler, useState } from 'react'
 import { useApolloClient } from '@apollo/react-hooks'
-import { Layout } from '../components/Layout'
 import redirect from '../lib/redirect'
-import { requireUnauth } from '../lib/requireUnauth'
-import { withApollo } from '../lib/apollo'
+import { TextInput } from './TextInput'
+import { Stack } from './Stack'
+import { Button } from './Button'
 
-const LoginPage = ({ loggedInUser }: { loggedInUser: Person }) => {
+export const SigninBox = () => {
   const client = useApolloClient()
   const [authenticate] = useAuthenticateMutation()
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -21,6 +22,9 @@ const LoginPage = ({ loggedInUser }: { loggedInUser: Person }) => {
     if (error) setError('')
 
     try {
+      // Remove any existing auth cookies before attempting to sign in. This can prevent isseus where existing logins have expired.
+      document.cookie = cookie.serialize('poToken', '', { maxAge: -1 })
+
       const { data, errors } = await authenticate({
         variables: {
           email,
@@ -59,39 +63,33 @@ const LoginPage = ({ loggedInUser }: { loggedInUser: Person }) => {
   }
 
   return (
-    <Layout title="log in | po-share">
-      <h1>Log in to po-share.com!</h1>
-      <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
+      <Stack space="medium">
+        <h1>Sign in to po-share</h1>
+
+        <TextInput
+          label="Email"
+          onChange={event => setEmail(event.currentTarget.value)}
+          name="email"
+          value={email}
+          type="text"
+        />
+
+        <TextInput
+          label="Password"
+          type="password"
+          name="password"
+          value={password}
+          placeholder="password"
+          onChange={event => setPassword(event.currentTarget.value)}
+        />
+
         {error && <div>{error}</div>}
-        <label htmlFor="email">
-          Email
-          <input
-            autoComplete="username"
-            onChange={event => setEmail(event.currentTarget.value)}
-            name="email"
-            value={email}
-            type="text"
-          />
-        </label>
-        <label htmlFor="password">
-          Password
-          <input
-            autoComplete="current-password"
-            name="password"
-            value={password}
-            placeholder="password"
-            type="password"
-            onChange={event => setPassword(event.currentTarget.value)}
-          />
-        </label>
-        <button type="submit" onClick={e => console.log(e)}>
+
+        <Button type="submit" onClick={e => console.log(e)}>
           Log In
-        </button>
-      </form>
-    </Layout>
+        </Button>
+      </Stack>
+    </form>
   )
 }
-
-LoginPage.getInitialProps = requireUnauth('/dashboard')
-
-export default withApollo(LoginPage)

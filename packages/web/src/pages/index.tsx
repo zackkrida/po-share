@@ -23,14 +23,24 @@ const HomePage = () => {
       </Hero>
       <Searchbar />
 
-      <Box theme="accent" spaceY="xlarge">
-        <h2>explore the newest uploads for your pocket operators</h2>
-        <ul>
-          <li>Woah</li>
-        </ul>
+      <Box theme="accent" spaceY="xxlarge">
+        <Stack space="small">
+          <h2>explore the newest uploads for your pocket operators</h2>
+          <ul>
+            <li>Woah</li>
+          </ul>
+        </Stack>
       </Box>
 
       <Box align="right" spaceY="xlarge">
+        <Stack space="small">
+          <h2>here's another one of these damn banners</h2>
+          <p>This one is centered-pretty great, eh?</p>
+          <Button>I thought you'd like it.</Button>
+        </Stack>
+      </Box>
+
+      <Box align="left" spaceY="xlarge" theme="dark">
         <Stack space="small">
           <h2>here's another one of these damn banners</h2>
           <p>This one is centered—pretty great, eh?</p>
