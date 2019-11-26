@@ -1,4 +1,5 @@
-import { Children, cloneElement, ReactElement } from 'react'
+import { getSpace, Space } from '../lib/getSpace'
+
 /**
  * Stack component
  * Adds vertical spacing to a list of elements
@@ -16,19 +17,6 @@ export const Stack = ({ children, space }: StackProps) => {
   )
 }
 
-function getSpace(space: Space) {
-  if (space === 'small') {
-    return '1em'
-  } else if (space === 'medium') {
-    return '2em'
-  } else if (space === 'large') {
-    return '3em'
-  } else if (space === 'xlarge') {
-    return '5em'
-  }
-}
-
-type Space = 'small' | 'medium' | 'large' | 'xlarge'
 interface StackProps {
   children: React.ReactNode
   space: Space

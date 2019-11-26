@@ -1,5 +1,8 @@
 import * as React from 'react'
 
+/**
+ * @todo Kill this, just use a 'Box' with like a flexy child inside
+ */
 const Hero = ({ children }: HeroProps) => {
   return (
     <section>

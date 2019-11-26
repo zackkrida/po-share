@@ -1,7 +1,7 @@
 import { Layout } from '../components/Layout'
 import Hero from '../components/Hero'
 import { Searchbar } from '../components/Searchbar'
-import { Banner } from '../components/Banner'
+import { Box } from '../components/Box'
 import { requireUnauth } from '../lib/requireUnauth'
 import { withApollo } from '../lib/apollo'
 import { Stack } from '../components/Stack'
@@ -23,20 +23,20 @@ const HomePage = () => {
       </Hero>
       <Searchbar />
 
-      <Banner theme="accent">
+      <Box theme="accent" spaceY="xlarge">
         <h2>explore the newest uploads for your pocket operators</h2>
         <ul>
           <li>Woah</li>
         </ul>
-      </Banner>
+      </Box>
 
-      <Banner align="right">
+      <Box align="right" spaceY="xlarge">
         <Stack space="small">
           <h2>here's another one of these damn banners</h2>
           <p>This one is centered—pretty great, eh?</p>
           <Button>I thought you'd like it.</Button>
         </Stack>
-      </Banner>
+      </Box>
 
       <style jsx>{`
         h1 {
