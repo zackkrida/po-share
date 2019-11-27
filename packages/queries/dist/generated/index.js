@@ -38,6 +38,19 @@ var PersonAccountsOrderBy;
     PersonAccountsOrderBy["PrimaryKeyAsc"] = "PRIMARY_KEY_ASC";
     PersonAccountsOrderBy["PrimaryKeyDesc"] = "PRIMARY_KEY_DESC";
 })(PersonAccountsOrderBy = exports.PersonAccountsOrderBy || (exports.PersonAccountsOrderBy = {}));
+/** Methods to use when ordering `TrackSearch`. */
+var TrackSearchesOrderBy;
+(function (TrackSearchesOrderBy) {
+    TrackSearchesOrderBy["Natural"] = "NATURAL";
+    TrackSearchesOrderBy["SearchableIdAsc"] = "SEARCHABLE_ID_ASC";
+    TrackSearchesOrderBy["SearchableIdDesc"] = "SEARCHABLE_ID_DESC";
+    TrackSearchesOrderBy["PrettyAsc"] = "PRETTY_ASC";
+    TrackSearchesOrderBy["PrettyDesc"] = "PRETTY_DESC";
+    TrackSearchesOrderBy["SearchableTypeAsc"] = "SEARCHABLE_TYPE_ASC";
+    TrackSearchesOrderBy["SearchableTypeDesc"] = "SEARCHABLE_TYPE_DESC";
+    TrackSearchesOrderBy["TermAsc"] = "TERM_ASC";
+    TrackSearchesOrderBy["TermDesc"] = "TERM_DESC";
+})(TrackSearchesOrderBy = exports.TrackSearchesOrderBy || (exports.TrackSearchesOrderBy = {}));
 /** Methods to use when ordering `Track`. */
 var TracksOrderBy;
 (function (TracksOrderBy) {
@@ -172,6 +185,92 @@ function useRegisterUserMutation(baseOptions) {
     return ApolloReactHooks.useMutation(exports.RegisterUserDocument, baseOptions);
 }
 exports.useRegisterUserMutation = useRegisterUserMutation;
+exports.PersonDocument = graphql_tag_1.default `
+    query person($id: Int!) {
+  person(id: $id) {
+    id
+    fullName
+    username
+    tracks {
+      nodes {
+        id
+        name
+        image
+        file
+        public
+        createdAt
+        updatedAt
+        publishedAt
+        updatedAt
+        deletedAt
+      }
+    }
+  }
+}
+    `;
+exports.PersonComponent = (props) => (React.createElement(ApolloReactComponents.Query, Object.assign({ query: exports.PersonDocument }, props)));
+/**
+ * __usePersonQuery__
+ *
+ * To run a query within a React component, call `usePersonQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePersonQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePersonQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+function usePersonQuery(baseOptions) {
+    return ApolloReactHooks.useQuery(exports.PersonDocument, baseOptions);
+}
+exports.usePersonQuery = usePersonQuery;
+function usePersonLazyQuery(baseOptions) {
+    return ApolloReactHooks.useLazyQuery(exports.PersonDocument, baseOptions);
+}
+exports.usePersonLazyQuery = usePersonLazyQuery;
+exports.TrackDocument = graphql_tag_1.default `
+    query track($id: Int!) {
+  track(id: $id) {
+    name
+    file
+    createdAt
+    person {
+      id
+      username
+    }
+  }
+}
+    `;
+exports.TrackComponent = (props) => (React.createElement(ApolloReactComponents.Query, Object.assign({ query: exports.TrackDocument }, props)));
+/**
+ * __useTrackQuery__
+ *
+ * To run a query within a React component, call `useTrackQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTrackQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTrackQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+function useTrackQuery(baseOptions) {
+    return ApolloReactHooks.useQuery(exports.TrackDocument, baseOptions);
+}
+exports.useTrackQuery = useTrackQuery;
+function useTrackLazyQuery(baseOptions) {
+    return ApolloReactHooks.useLazyQuery(exports.TrackDocument, baseOptions);
+}
+exports.useTrackLazyQuery = useTrackLazyQuery;
 exports.UserTracksDocument = graphql_tag_1.default `
     query userTracks($userId: Int!) {
   tracks(condition: {personId: $userId}) {
@@ -216,3 +315,41 @@ function useUserTracksLazyQuery(baseOptions) {
     return ApolloReactHooks.useLazyQuery(exports.UserTracksDocument, baseOptions);
 }
 exports.useUserTracksLazyQuery = useUserTracksLazyQuery;
+exports.SearchTracksDocument = graphql_tag_1.default `
+    query searchTracks($term: String) {
+  search(search: $term) {
+    totalCount
+    nodes {
+      searchableId
+      searchableType
+      term
+      pretty
+    }
+  }
+}
+    `;
+exports.SearchTracksComponent = (props) => (React.createElement(ApolloReactComponents.Query, Object.assign({ query: exports.SearchTracksDocument }, props)));
+/**
+ * __useSearchTracksQuery__
+ *
+ * To run a query within a React component, call `useSearchTracksQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSearchTracksQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSearchTracksQuery({
+ *   variables: {
+ *      term: // value for 'term'
+ *   },
+ * });
+ */
+function useSearchTracksQuery(baseOptions) {
+    return ApolloReactHooks.useQuery(exports.SearchTracksDocument, baseOptions);
+}
+exports.useSearchTracksQuery = useSearchTracksQuery;
+function useSearchTracksLazyQuery(baseOptions) {
+    return ApolloReactHooks.useLazyQuery(exports.SearchTracksDocument, baseOptions);
+}
+exports.useSearchTracksLazyQuery = useSearchTracksLazyQuery;

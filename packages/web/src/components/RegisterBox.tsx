@@ -66,7 +66,7 @@ export const RegisterBox = () => {
   return (
     <form onSubmit={handleSubmit}>
       <Stack space="medium">
-        <h1>Register for po-share.com!</h1>
+        <h1>Register</h1>
         <TextInput
           label="First Name"
           value={firstName}

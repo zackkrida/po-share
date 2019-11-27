@@ -69,6 +69,7 @@ export const TextInput = ({ label, ...props }: TextInputProps) => {
 
         input {
           border-style: solid;
+          border-radius: 4px;
           padding: 1em;
           display: block;
           width: 100%;
@@ -78,6 +79,7 @@ export const TextInput = ({ label, ...props }: TextInputProps) => {
         input:hover,
         input:focus {
           outline: 0;
+          box-shadow: 0px 2px 0px var(--color-dark);
           border-color: var(--color-dark);
         }
 

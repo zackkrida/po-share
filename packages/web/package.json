@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.3",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.7.4",
+    "@babel/plugin-proposal-optional-chaining": "^7.7.4",
     "@po-share/queries": "1.0.0",
     "@reach/dialog": "^0.6.2",
     "@zeit/next-css": "^1.0.1",

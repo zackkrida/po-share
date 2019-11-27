@@ -21,34 +21,53 @@ const getText = (theme: Theme.Palette) => {
 }
 
 export const Box = ({
-  theme = 'light',
   align = 'left',
+  children,
+  element = 'section',
   spaceX = 'small',
   spaceY = 'medium',
-  children,
-}: BoxProps) => (
-  <div className="banner">
-    {children}
-    <style jsx>{`
-      .banner {
-        font-size: 1.2em;
-      }
-    `}</style>
-    <style jsx>{`
-      .banner {
-        background: ${getBg(theme)};
-        color: ${getText(theme)};
-        text-align: ${align};
-        padding: ${getSpace(spaceY)} ${getSpace(spaceX)};
-      }
-    `}</style>
-  </div>
-)
+  styleOnInteraction = false,
+  theme = 'light',
+}: BoxProps) => {
+  const Element = element
+  return (
+    <Element className="box">
+      {children}
+      <style jsx>{`
+        .box {
+          font-size: 1.2em;
+        }
+      `}</style>
+      <style jsx>{`
+        .box {
+          background: ${getBg(theme)};
+          border: 4px solid ${getBg(theme)};
+          color: ${getText(theme)};
+          text-align: ${align};
+          padding: ${getSpace(spaceY)} ${getSpace(spaceX)};
+        }
+      `}</style>
+      <style jsx>
+        {`
+          .box:focus-within,
+          .box:hover {
+            ${styleOnInteraction && `border-color: var(--color-dark);`}
+            ${styleOnInteraction && `border-radius: 4px;`}
+            ${styleOnInteraction &&
+              `box-shadow: 0px 4px 0px var(--color-dark);`}
+          }
+        `}
+      </style>
+    </Element>
+  )
+}
 
 type BoxProps = {
   children: React.ReactNode
   spaceX?: Space
   spaceY?: Space
   theme?: Theme.Palette
+  element?: keyof JSX.IntrinsicElements
   align?: Theme.Alignment
+  styleOnInteraction?: boolean /** Style a box when it's content is focused or hovered. Beware of nexted boxes...all parent boxes will be styled too.   */
 }

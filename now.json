@@ -17,12 +17,12 @@
       "use": "@now/next"
     },
     {
-      "src": "packages/graphql-server/src/index.ts",
+      "src": "packages/graphql-server/dist/index.js",
       "use": "@now/node"
     }
   ],
   "routes": [
-    { "src": "/graphql", "dest": "packages/graphql-server/src/index.ts" },
+    { "src": "/graphql", "dest": "packages/graphql-server/dist/index.js" },
     { "src": "^/(.*)$", "dest": "/packages/web/$1" }
   ]
 }

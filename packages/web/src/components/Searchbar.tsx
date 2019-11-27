@@ -30,7 +30,7 @@ export const Searchbar = ({ initialQuery = '' }: SearchbarProps) => {
       <style jsx>{`
         .Searchbar {
           width: 1000px;
-          max-width: 100%;
+          max-width: calc(100% - 2em);
           margin: 0 auto;
           display: block;
           padding: 1em;

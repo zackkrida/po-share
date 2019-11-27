@@ -5,4 +5,5 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./queries/authenticate"));
 __export(require("./queries/track"));
+__export(require("./queries/person"));
 __export(require("./generated"));

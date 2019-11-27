@@ -367,7 +367,13 @@ export default (): JSX.Element => (
         box-sizing: border-box;
       }
 
-      * {
+      *,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
         margin-top: 0;
         margin-bottom: 0;
       }
@@ -394,6 +400,16 @@ export default (): JSX.Element => (
       }
       button:hover {
         cursor: pointer;
+      }
+
+      [data-reach-dialog-content] {
+        padding: 2em;
+        border-radius: 8px;
+        border: 4px solid var(--color-dark);
+      }
+
+      audio {
+        display: block;
       }
     `}
   </style>

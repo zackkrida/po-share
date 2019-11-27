@@ -1,4 +1,4 @@
-import checkLoggedIn from './checkLoggedIn'
+import { getCurrentUser } from './getCurrentUser'
 import redirect from './redirect'
 
 /**
@@ -6,7 +6,7 @@ import redirect from './redirect'
  */
 export default async (context: CustomContext) => {
   try {
-    const { loggedInUser } = await checkLoggedIn(context.apolloClient)
+    const { loggedInUser } = await getCurrentUser(context.apolloClient)
 
     console.log({ loggedInUser })
 

@@ -62,6 +62,41 @@ type CreateTrackPayload {
   ): TracksEdge
 }
 
+"""All input for the create `TrackSearch` mutation."""
+input CreateTrackSearchInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `TrackSearch` to be created by this mutation."""
+  trackSearch: TrackSearchInput!
+}
+
+"""The output of our create `TrackSearch` mutation."""
+type CreateTrackSearchPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `TrackSearch` that was created by this mutation."""
+  trackSearch: TrackSearch
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `TrackSearch`. May be used by Relay 1."""
+  trackSearchEdge(
+    """The method to use when ordering `TrackSearch`."""
+    orderBy: [TrackSearchesOrderBy!] = [NATURAL]
+  ): TrackSearchesEdge
+}
+
 """A location in a connection that can be used for resuming pagination."""
 scalar Cursor
 
@@ -88,6 +123,14 @@ type Mutation {
     """
     input: CreateTrackInput!
   ): CreateTrackPayload
+
+  """Creates a single `TrackSearch`."""
+  createTrackSearch(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateTrackSearchInput!
+  ): CreateTrackSearchPayload
 
   """Updates a single `Person` using a unique key and a patch."""
   updatePerson(
@@ -491,6 +534,35 @@ type Query {
     condition: TrackCondition
   ): TracksConnection
 
+  """Reads and enables pagination through a set of `TrackSearch`."""
+  trackSearches(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `TrackSearch`."""
+    orderBy: [TrackSearchesOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: TrackSearchCondition
+  ): TrackSearchesConnection
+
   """Reads and enables pagination through a set of `PersonAccount`."""
   personAccounts(
     """Only read the first `n` values of the set."""
@@ -527,6 +599,29 @@ type Query {
 
   """Gets the person who was identified by our JWT."""
   currentPerson: Person
+
+  """Reads and enables pagination through a set of `TrackSearch`."""
+  search(
+    search: String
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+  ): TrackSearchesConnection!
 }
 
 """All input for the `registerPerson` mutation."""
@@ -659,6 +754,78 @@ type TracksConnection {
 
   """The count of *all* `Track` you could get from the connection."""
   totalCount: Int!
+}
+
+type TrackSearch {
+  searchableId: Int
+  pretty: String
+  searchableType: String
+  term: String
+}
+
+"""
+A condition to be used against `TrackSearch` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input TrackSearchCondition {
+  """Checks for equality with the object’s `searchableId` field."""
+  searchableId: Int
+
+  """Checks for equality with the object’s `pretty` field."""
+  pretty: String
+
+  """Checks for equality with the object’s `searchableType` field."""
+  searchableType: String
+
+  """Checks for equality with the object’s `term` field."""
+  term: String
+}
+
+"""A connection to a list of `TrackSearch` values."""
+type TrackSearchesConnection {
+  """A list of `TrackSearch` objects."""
+  nodes: [TrackSearch]!
+
+  """
+  A list of edges which contains the `TrackSearch` and cursor to aid in pagination.
+  """
+  edges: [TrackSearchesEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `TrackSearch` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `TrackSearch` edge in the connection."""
+type TrackSearchesEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `TrackSearch` at the end of the edge."""
+  node: TrackSearch
+}
+
+"""Methods to use when ordering `TrackSearch`."""
+enum TrackSearchesOrderBy {
+  NATURAL
+  SEARCHABLE_ID_ASC
+  SEARCHABLE_ID_DESC
+  PRETTY_ASC
+  PRETTY_DESC
+  SEARCHABLE_TYPE_ASC
+  SEARCHABLE_TYPE_DESC
+  TERM_ASC
+  TERM_DESC
+}
+
+"""An input for mutations affecting `TrackSearch`"""
+input TrackSearchInput {
+  searchableId: Int
+  pretty: String
+  searchableType: String
+  term: String
 }
 
 """A `Track` edge in the connection."""

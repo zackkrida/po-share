@@ -77,11 +77,42 @@ export declare type CreateTrackPayload = {
 export declare type CreateTrackPayloadTrackEdgeArgs = {
     orderBy?: Maybe<Array<TracksOrderBy>>;
 };
+/** All input for the create `TrackSearch` mutation. */
+export declare type CreateTrackSearchInput = {
+    /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+     * payload verbatim. May be used to track mutations by the client.
+   **/
+    clientMutationId?: Maybe<Scalars['String']>;
+    /** The `TrackSearch` to be created by this mutation. */
+    trackSearch: TrackSearchInput;
+};
+/** The output of our create `TrackSearch` mutation. */
+export declare type CreateTrackSearchPayload = {
+    __typename?: 'CreateTrackSearchPayload';
+    /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+     * unchanged and unused. May be used by a client to track mutations.
+   **/
+    clientMutationId?: Maybe<Scalars['String']>;
+    /** The `TrackSearch` that was created by this mutation. */
+    trackSearch?: Maybe<TrackSearch>;
+    /** Our root query field type. Allows us to run any query from our mutation payload. */
+    query?: Maybe<Query>;
+    /** An edge for our `TrackSearch`. May be used by Relay 1. */
+    trackSearchEdge?: Maybe<TrackSearchesEdge>;
+};
+/** The output of our create `TrackSearch` mutation. */
+export declare type CreateTrackSearchPayloadTrackSearchEdgeArgs = {
+    orderBy?: Maybe<Array<TrackSearchesOrderBy>>;
+};
 /** The root mutation type which contains root level fields which mutate data. */
 export declare type Mutation = {
     __typename?: 'Mutation';
     /** Creates a single `Track`. */
     createTrack?: Maybe<CreateTrackPayload>;
+    /** Creates a single `TrackSearch`. */
+    createTrackSearch?: Maybe<CreateTrackSearchPayload>;
     /** Updates a single `Person` using a unique key and a patch. */
     updatePerson?: Maybe<UpdatePersonPayload>;
     /** Updates a single `Person` using a unique key and a patch. */
@@ -100,6 +131,10 @@ export declare type Mutation = {
 /** The root mutation type which contains root level fields which mutate data. */
 export declare type MutationCreateTrackArgs = {
     input: CreateTrackInput;
+};
+/** The root mutation type which contains root level fields which mutate data. */
+export declare type MutationCreateTrackSearchArgs = {
+    input: CreateTrackSearchInput;
 };
 /** The root mutation type which contains root level fields which mutate data. */
 export declare type MutationUpdatePersonArgs = {
@@ -330,6 +365,8 @@ export declare type Query = {
     people?: Maybe<PeopleConnection>;
     /** Reads and enables pagination through a set of `Track`. */
     tracks?: Maybe<TracksConnection>;
+    /** Reads and enables pagination through a set of `TrackSearch`. */
+    trackSearches?: Maybe<TrackSearchesConnection>;
     /** Reads and enables pagination through a set of `PersonAccount`. */
     personAccounts?: Maybe<PersonAccountsConnection>;
     person?: Maybe<Person>;
@@ -339,6 +376,8 @@ export declare type Query = {
     personAccountByEmail?: Maybe<PersonAccount>;
     /** Gets the person who was identified by our JWT. */
     currentPerson?: Maybe<Person>;
+    /** Reads and enables pagination through a set of `TrackSearch`. */
+    search: TrackSearchesConnection;
 };
 /** The root query type which gives access points into the data universe. */
 export declare type QueryPeopleArgs = {
@@ -359,6 +398,16 @@ export declare type QueryTracksArgs = {
     after?: Maybe<Scalars['Cursor']>;
     orderBy?: Maybe<Array<TracksOrderBy>>;
     condition?: Maybe<TrackCondition>;
+};
+/** The root query type which gives access points into the data universe. */
+export declare type QueryTrackSearchesArgs = {
+    first?: Maybe<Scalars['Int']>;
+    last?: Maybe<Scalars['Int']>;
+    offset?: Maybe<Scalars['Int']>;
+    before?: Maybe<Scalars['Cursor']>;
+    after?: Maybe<Scalars['Cursor']>;
+    orderBy?: Maybe<Array<TrackSearchesOrderBy>>;
+    condition?: Maybe<TrackSearchCondition>;
 };
 /** The root query type which gives access points into the data universe. */
 export declare type QueryPersonAccountsArgs = {
@@ -389,6 +438,15 @@ export declare type QueryPersonAccountArgs = {
 /** The root query type which gives access points into the data universe. */
 export declare type QueryPersonAccountByEmailArgs = {
     email: Scalars['String'];
+};
+/** The root query type which gives access points into the data universe. */
+export declare type QuerySearchArgs = {
+    search?: Maybe<Scalars['String']>;
+    first?: Maybe<Scalars['Int']>;
+    last?: Maybe<Scalars['Int']>;
+    offset?: Maybe<Scalars['Int']>;
+    before?: Maybe<Scalars['Cursor']>;
+    after?: Maybe<Scalars['Cursor']>;
 };
 /** All input for the `registerPerson` mutation. */
 export declare type RegisterPersonInput = {
@@ -495,6 +553,66 @@ export declare type TracksConnection = {
     pageInfo: PageInfo;
     /** The count of *all* `Track` you could get from the connection. */
     totalCount: Scalars['Int'];
+};
+export declare type TrackSearch = {
+    __typename?: 'TrackSearch';
+    searchableId?: Maybe<Scalars['Int']>;
+    pretty?: Maybe<Scalars['String']>;
+    searchableType?: Maybe<Scalars['String']>;
+    term?: Maybe<Scalars['String']>;
+};
+/**
+ * A condition to be used against `TrackSearch` object types. All fields are tested
+ * for equality and combined with a logical ‘and.’
+ **/
+export declare type TrackSearchCondition = {
+    /** Checks for equality with the object’s `searchableId` field. */
+    searchableId?: Maybe<Scalars['Int']>;
+    /** Checks for equality with the object’s `pretty` field. */
+    pretty?: Maybe<Scalars['String']>;
+    /** Checks for equality with the object’s `searchableType` field. */
+    searchableType?: Maybe<Scalars['String']>;
+    /** Checks for equality with the object’s `term` field. */
+    term?: Maybe<Scalars['String']>;
+};
+/** A connection to a list of `TrackSearch` values. */
+export declare type TrackSearchesConnection = {
+    __typename?: 'TrackSearchesConnection';
+    /** A list of `TrackSearch` objects. */
+    nodes: Array<Maybe<TrackSearch>>;
+    /** A list of edges which contains the `TrackSearch` and cursor to aid in pagination. */
+    edges: Array<TrackSearchesEdge>;
+    /** Information to aid in pagination. */
+    pageInfo: PageInfo;
+    /** The count of *all* `TrackSearch` you could get from the connection. */
+    totalCount: Scalars['Int'];
+};
+/** A `TrackSearch` edge in the connection. */
+export declare type TrackSearchesEdge = {
+    __typename?: 'TrackSearchesEdge';
+    /** A cursor for use in pagination. */
+    cursor?: Maybe<Scalars['Cursor']>;
+    /** The `TrackSearch` at the end of the edge. */
+    node?: Maybe<TrackSearch>;
+};
+/** Methods to use when ordering `TrackSearch`. */
+export declare enum TrackSearchesOrderBy {
+    Natural = "NATURAL",
+    SearchableIdAsc = "SEARCHABLE_ID_ASC",
+    SearchableIdDesc = "SEARCHABLE_ID_DESC",
+    PrettyAsc = "PRETTY_ASC",
+    PrettyDesc = "PRETTY_DESC",
+    SearchableTypeAsc = "SEARCHABLE_TYPE_ASC",
+    SearchableTypeDesc = "SEARCHABLE_TYPE_DESC",
+    TermAsc = "TERM_ASC",
+    TermDesc = "TERM_DESC"
+}
+/** An input for mutations affecting `TrackSearch` */
+export declare type TrackSearchInput = {
+    searchableId?: Maybe<Scalars['Int']>;
+    pretty?: Maybe<Scalars['String']>;
+    searchableType?: Maybe<Scalars['String']>;
+    term?: Maybe<Scalars['String']>;
 };
 /** A `Track` edge in the connection. */
 export declare type TracksEdge = {
@@ -685,6 +803,38 @@ export declare type RegisterUserMutation = ({
         } & Pick<Person, 'id' | 'fullName' | 'firstName' | 'lastName' | 'about' | 'createdAt' | 'updatedAt'>)>;
     })>;
 });
+export declare type PersonQueryVariables = {
+    id: Scalars['Int'];
+};
+export declare type PersonQuery = ({
+    __typename?: 'Query';
+} & {
+    person: Maybe<({
+        __typename?: 'Person';
+    } & Pick<Person, 'id' | 'fullName' | 'username'> & {
+        tracks: ({
+            __typename?: 'TracksConnection';
+        } & {
+            nodes: Array<Maybe<({
+                __typename?: 'Track';
+            } & Pick<Track, 'id' | 'name' | 'image' | 'file' | 'public' | 'createdAt' | 'updatedAt' | 'publishedAt' | 'deletedAt'>)>>;
+        });
+    })>;
+});
+export declare type TrackQueryVariables = {
+    id: Scalars['Int'];
+};
+export declare type TrackQuery = ({
+    __typename?: 'Query';
+} & {
+    track: Maybe<({
+        __typename?: 'Track';
+    } & Pick<Track, 'name' | 'file' | 'createdAt'> & {
+        person: Maybe<({
+            __typename?: 'Person';
+        } & Pick<Person, 'id' | 'username'>)>;
+    })>;
+});
 export declare type UserTracksQueryVariables = {
     userId: Scalars['Int'];
 };
@@ -698,6 +848,20 @@ export declare type UserTracksQuery = ({
             __typename?: 'Track';
         } & Pick<Track, 'id' | 'name' | 'image' | 'file' | 'public' | 'createdAt' | 'updatedAt' | 'publishedAt' | 'deletedAt'>)>>;
     })>;
+});
+export declare type SearchTracksQueryVariables = {
+    term?: Maybe<Scalars['String']>;
+};
+export declare type SearchTracksQuery = ({
+    __typename?: 'Query';
+} & {
+    search: ({
+        __typename?: 'TrackSearchesConnection';
+    } & Pick<TrackSearchesConnection, 'totalCount'> & {
+        nodes: Array<Maybe<({
+            __typename?: 'TrackSearch';
+        } & Pick<TrackSearch, 'searchableId' | 'searchableType' | 'term' | 'pretty'>)>>;
+    });
 });
 export declare const AuthenticateDocument: any;
 export declare type AuthenticateMutationFn = ApolloReactCommon.MutationFunction<AuthenticateMutation, AuthenticateMutationVariables>;
@@ -776,6 +940,64 @@ export declare function useRegisterUserMutation(baseOptions?: ApolloReactHooks.M
 export declare type RegisterUserMutationHookResult = ReturnType<typeof useRegisterUserMutation>;
 export declare type RegisterUserMutationResult = ApolloReactCommon.MutationResult<RegisterUserMutation>;
 export declare type RegisterUserMutationOptions = ApolloReactCommon.BaseMutationOptions<RegisterUserMutation, RegisterUserMutationVariables>;
+export declare const PersonDocument: any;
+export declare type PersonComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<PersonQuery, PersonQueryVariables>, 'query'> & ({
+    variables: PersonQueryVariables;
+    skip?: boolean;
+} | {
+    skip: boolean;
+});
+export declare const PersonComponent: (props: PersonComponentProps) => JSX.Element;
+/**
+ * __usePersonQuery__
+ *
+ * To run a query within a React component, call `usePersonQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePersonQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePersonQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export declare function usePersonQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<PersonQuery, PersonQueryVariables>): ApolloReactCommon.QueryResult<PersonQuery, PersonQueryVariables>;
+export declare function usePersonLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<PersonQuery, PersonQueryVariables>): [(options?: ApolloReactHooks.QueryLazyOptions<PersonQueryVariables> | undefined) => void, ApolloReactCommon.QueryResult<PersonQuery, PersonQueryVariables>];
+export declare type PersonQueryHookResult = ReturnType<typeof usePersonQuery>;
+export declare type PersonLazyQueryHookResult = ReturnType<typeof usePersonLazyQuery>;
+export declare type PersonQueryResult = ApolloReactCommon.QueryResult<PersonQuery, PersonQueryVariables>;
+export declare const TrackDocument: any;
+export declare type TrackComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<TrackQuery, TrackQueryVariables>, 'query'> & ({
+    variables: TrackQueryVariables;
+    skip?: boolean;
+} | {
+    skip: boolean;
+});
+export declare const TrackComponent: (props: TrackComponentProps) => JSX.Element;
+/**
+ * __useTrackQuery__
+ *
+ * To run a query within a React component, call `useTrackQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTrackQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTrackQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export declare function useTrackQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<TrackQuery, TrackQueryVariables>): ApolloReactCommon.QueryResult<TrackQuery, TrackQueryVariables>;
+export declare function useTrackLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<TrackQuery, TrackQueryVariables>): [(options?: ApolloReactHooks.QueryLazyOptions<TrackQueryVariables> | undefined) => void, ApolloReactCommon.QueryResult<TrackQuery, TrackQueryVariables>];
+export declare type TrackQueryHookResult = ReturnType<typeof useTrackQuery>;
+export declare type TrackLazyQueryHookResult = ReturnType<typeof useTrackLazyQuery>;
+export declare type TrackQueryResult = ApolloReactCommon.QueryResult<TrackQuery, TrackQueryVariables>;
 export declare const UserTracksDocument: any;
 export declare type UserTracksComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<UserTracksQuery, UserTracksQueryVariables>, 'query'> & ({
     variables: UserTracksQueryVariables;
@@ -805,3 +1027,27 @@ export declare function useUserTracksLazyQuery(baseOptions?: ApolloReactHooks.La
 export declare type UserTracksQueryHookResult = ReturnType<typeof useUserTracksQuery>;
 export declare type UserTracksLazyQueryHookResult = ReturnType<typeof useUserTracksLazyQuery>;
 export declare type UserTracksQueryResult = ApolloReactCommon.QueryResult<UserTracksQuery, UserTracksQueryVariables>;
+export declare const SearchTracksDocument: any;
+export declare type SearchTracksComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<SearchTracksQuery, SearchTracksQueryVariables>, 'query'>;
+export declare const SearchTracksComponent: (props: Pick<ApolloReactComponents.QueryComponentOptions<SearchTracksQuery, SearchTracksQueryVariables>, "children" | "variables" | "errorPolicy" | "client" | "notifyOnNetworkStatusChange" | "context" | "onCompleted" | "onError" | "fetchPolicy" | "displayName" | "skip" | "ssr" | "pollInterval" | "partialRefetch" | "returnPartialData">) => JSX.Element;
+/**
+ * __useSearchTracksQuery__
+ *
+ * To run a query within a React component, call `useSearchTracksQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSearchTracksQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSearchTracksQuery({
+ *   variables: {
+ *      term: // value for 'term'
+ *   },
+ * });
+ */
+export declare function useSearchTracksQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<SearchTracksQuery, SearchTracksQueryVariables>): ApolloReactCommon.QueryResult<SearchTracksQuery, SearchTracksQueryVariables>;
+export declare function useSearchTracksLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<SearchTracksQuery, SearchTracksQueryVariables>): [(options?: ApolloReactHooks.QueryLazyOptions<SearchTracksQueryVariables> | undefined) => void, ApolloReactCommon.QueryResult<SearchTracksQuery, SearchTracksQueryVariables>];
+export declare type SearchTracksQueryHookResult = ReturnType<typeof useSearchTracksQuery>;
+export declare type SearchTracksLazyQueryHookResult = ReturnType<typeof useSearchTracksLazyQuery>;
+export declare type SearchTracksQueryResult = ApolloReactCommon.QueryResult<SearchTracksQuery, SearchTracksQueryVariables>;
