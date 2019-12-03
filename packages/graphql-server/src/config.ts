@@ -3,7 +3,6 @@ import { NodePlugin } from 'graphile-build'
 
 export const postgraphileOptions = {
   dynamicJson: true,
-  graphiql: false,
   graphqlRoute: '/graphql',
   defaultRole: 'po_share_anonymous',
   appendPlugins: [PgSimplifyInflectorPlugin],

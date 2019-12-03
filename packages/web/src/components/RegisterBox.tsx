@@ -1,4 +1,3 @@
-import { Layout } from './Layout'
 import {
   useRegisterUserMutation,
   useAuthenticateMutation,
@@ -7,15 +6,15 @@ import cookie from 'cookie'
 import redirect from '../lib/redirect'
 import { useState, EventHandler, FormEvent } from 'react'
 import { useApolloClient } from '@apollo/react-hooks'
-import { requireUnauth } from '../lib/requireUnauth'
-import { withApollo } from '../lib/apollo'
 import { Stack } from './Stack'
 import { Button } from './Button'
 import { TextInput } from './TextInput'
+import { slugify } from '../lib/utils'
 
 export const RegisterBox = () => {
   let [firstName, setFirstName] = useState('')
   let [lastName, setLastName] = useState('')
+  let [username, setUsername] = useState('')
   let [email, setEmail] = useState('')
   let [password, setPassword] = useState('')
 
@@ -27,24 +26,35 @@ export const RegisterBox = () => {
     event.preventDefault()
     event.stopPropagation()
 
-    const { errors } = await register({
-      variables: {
-        firstName,
-        lastName,
-        email,
-        password,
-      },
-    })
+    try {
+      // first delete remove any lingering cookies
+      document.cookie = cookie.serialize('poToken', '', { maxAge: -1 })
 
-    if (!errors) {
-      const { data, errors } = await login({
+      const { errors } = await register({
+        variables: {
+          input: {
+            firstName,
+            lastName,
+            email,
+            password,
+            username,
+            slug: slugify(username),
+          },
+        },
+      })
+
+      if (errors) {
+        throw Error(`Errors in Graphql Response: ${JSON.stringify(errors)}`)
+      }
+
+      const { data, errors: loginErrors } = await login({
         variables: {
           email,
           password,
         },
       })
 
-      if (!errors) {
+      if (!loginErrors) {
         // Store the token in cookie
         document.cookie = cookie.serialize(
           'poToken',
@@ -60,6 +70,8 @@ export const RegisterBox = () => {
           redirect({}, '/')
         })
       }
+    } catch (error) {
+      console.error('Error registering user:', error.message)
     }
   }
 
@@ -77,6 +89,15 @@ export const RegisterBox = () => {
           value={lastName}
           onChange={event => setLastName(event.currentTarget.value)}
         />
+        <TextInput
+          label="Username"
+          value={username}
+          onChange={event => setUsername(event.currentTarget.value)}
+        />
+        <p>
+          Your username will be your unique url: "https://poshare.com/
+          {slugify(username)}"
+        </p>
         <TextInput
           label="Email"
           value={email}

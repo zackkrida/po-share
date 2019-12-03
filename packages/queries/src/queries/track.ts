@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'
 
 export const TRACK = gql`
-  query track($id: Int!) {
+  query track($id: UUID!) {
     track(id: $id) {
       name
       file
@@ -15,7 +15,7 @@ export const TRACK = gql`
 `
 
 export const USER_TRACKS = gql`
-  query userTracks($userId: Int!) {
+  query userTracks($userId: UUID!) {
     tracks(condition: { personId: $userId }) {
       totalCount
       nodes {

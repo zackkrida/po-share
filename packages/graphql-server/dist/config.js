@@ -7,7 +7,6 @@ var pg_simplify_inflector_1 = __importDefault(require("@graphile-contrib/pg-simp
 var graphile_build_1 = require("graphile-build");
 exports.postgraphileOptions = {
     dynamicJson: true,
-    graphiql: false,
     graphqlRoute: '/graphql',
     defaultRole: 'po_share_anonymous',
     appendPlugins: [pg_simplify_inflector_1["default"]],

@@ -23,20 +23,8 @@ export const GET_CURRENT_USER = gql`
 `
 
 export const REGISTER_USER = gql`
-  mutation registerUser(
-    $firstName: String!
-    $lastName: String!
-    $email: String!
-    $password: String!
-  ) {
-    registerPerson(
-      input: {
-        firstName: $firstName
-        lastName: $lastName
-        email: $email
-        password: $password
-      }
-    ) {
+  mutation registerUser($input: RegisterPersonInput!) {
+    registerPerson(input: $input) {
       person {
         id
         fullName

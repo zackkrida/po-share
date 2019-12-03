@@ -22,20 +22,8 @@ exports.GET_CURRENT_USER = graphql_tag_1.default `
   }
 `;
 exports.REGISTER_USER = graphql_tag_1.default `
-  mutation registerUser(
-    $firstName: String!
-    $lastName: String!
-    $email: String!
-    $password: String!
-  ) {
-    registerPerson(
-      input: {
-        firstName: $firstName
-        lastName: $lastName
-        email: $email
-        password: $password
-      }
-    ) {
+  mutation registerUser($input: RegisterPersonInput!) {
+    registerPerson(input: $input) {
       person {
         id
         fullName

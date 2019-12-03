@@ -153,7 +153,7 @@ function createApolloClient(initialState: any = {}, { getToken }: any) {
     fetchOptions,
   })
 
-  const authLink = setContext((request, { headers }) => {
+  const authLink = setContext((request, { headers = {} }) => {
     const token = getToken()
     if (token) headers.authorization = `Bearer ${token}`
     return { headers }

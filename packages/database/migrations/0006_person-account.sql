@@ -1,6 +1,6 @@
 -- The user account details, contained in a privately scoped schema
 create table po_share_private.person_account (
-  person_id        integer primary key references po_share.person(id) on delete cascade,
+  person_id        uuid primary key references po_share.person(id) on delete cascade,
   email            text not null unique check (email ~* '^.+@.+\..+$'),
   password_hash    text not null
 );

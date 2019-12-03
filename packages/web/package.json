@@ -16,6 +16,7 @@
     "@babel/plugin-proposal-optional-chaining": "^7.7.4",
     "@po-share/queries": "1.0.0",
     "@reach/dialog": "^0.6.2",
+    "@types/slug": "^0.9.1",
     "@zeit/next-css": "^1.0.1",
     "apollo-boost": "^0.4.4",
     "apollo-link-context": "^1.0.19",
@@ -26,12 +27,13 @@
     "isomorphic-unfetch": "^3.0.0",
     "next": "^9.1.5-canary.6",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "slug": "^1.1.0"
   },
   "devDependencies": {
     "@types/cookie": "^0.3.3",
     "@types/node": "^12.12.9",
-    "@types/react": "^16.9.11",
+    "@types/react": "^16.9.14",
     "@types/react-dom": "^16.9.4",
     "typescript": "^3.7.2"
   },

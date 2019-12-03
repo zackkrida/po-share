@@ -10,8 +10,8 @@
   "scripts": {
     "build": "tsc -b && yarn build:cache && yarn start",
     "build:cache": "node -r dotenv/config dist/makeCache.js dotenv_config_path=../../.env",
-    "dev": "node -r dotenv/config dist dotenv_config_path=../../.env",
-    "start": "node -r dotenv/config dist dotenv_config_path=../../.env"
+    "dev": "node -r dotenv/config dist/index.js dotenv_config_path=../../.env",
+    "start": "node -r dotenv/config dist/index.js dotenv_config_path=../../.env"
   },
   "devDependencies": {
     "@now/node": "^1.1.2",

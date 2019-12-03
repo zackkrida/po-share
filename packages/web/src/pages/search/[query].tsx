@@ -15,7 +15,7 @@ const SearchPage: NextPage<SearchPageProps> = ({ query }) => {
     variables: { term: query },
   })
   const resultCount = data?.search?.totalCount ?? 0
-  const results = data?.search?.nodes
+  const results = data?.search?.nodes ?? []
 
   return (
     <Layout>
@@ -55,7 +55,7 @@ const SearchPage: NextPage<SearchPageProps> = ({ query }) => {
             <TrackSearchList tracks={results} />
           </Stack>
         ) : (
-          <div>No results for search.</div>
+          <div>No results for "{searchTerm}".</div>
         )}
       </Box>
     </Layout>

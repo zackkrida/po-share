@@ -22,6 +22,8 @@ var PeopleOrderBy;
     PeopleOrderBy["UpdatedAtDesc"] = "UPDATED_AT_DESC";
     PeopleOrderBy["UsernameAsc"] = "USERNAME_ASC";
     PeopleOrderBy["UsernameDesc"] = "USERNAME_DESC";
+    PeopleOrderBy["SlugAsc"] = "SLUG_ASC";
+    PeopleOrderBy["SlugDesc"] = "SLUG_DESC";
     PeopleOrderBy["PrimaryKeyAsc"] = "PRIMARY_KEY_ASC";
     PeopleOrderBy["PrimaryKeyDesc"] = "PRIMARY_KEY_DESC";
 })(PeopleOrderBy = exports.PeopleOrderBy || (exports.PeopleOrderBy = {}));
@@ -146,8 +148,8 @@ function useCurrentPersonLazyQuery(baseOptions) {
 }
 exports.useCurrentPersonLazyQuery = useCurrentPersonLazyQuery;
 exports.RegisterUserDocument = graphql_tag_1.default `
-    mutation registerUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
-  registerPerson(input: {firstName: $firstName, lastName: $lastName, email: $email, password: $password}) {
+    mutation registerUser($input: RegisterPersonInput!) {
+  registerPerson(input: $input) {
     person {
       id
       fullName
@@ -174,10 +176,7 @@ exports.RegisterUserComponent = (props) => (React.createElement(ApolloReactCompo
  * @example
  * const [registerUserMutation, { data, loading, error }] = useRegisterUserMutation({
  *   variables: {
- *      firstName: // value for 'firstName'
- *      lastName: // value for 'lastName'
- *      email: // value for 'email'
- *      password: // value for 'password'
+ *      input: // value for 'input'
  *   },
  * });
  */
@@ -185,9 +184,9 @@ function useRegisterUserMutation(baseOptions) {
     return ApolloReactHooks.useMutation(exports.RegisterUserDocument, baseOptions);
 }
 exports.useRegisterUserMutation = useRegisterUserMutation;
-exports.PersonDocument = graphql_tag_1.default `
-    query person($id: Int!) {
-  person(id: $id) {
+exports.PersonByUsernameDocument = graphql_tag_1.default `
+    query personByUsername($username: String!) {
+  personByUsername(username: $username) {
     id
     fullName
     username
@@ -208,33 +207,81 @@ exports.PersonDocument = graphql_tag_1.default `
   }
 }
     `;
-exports.PersonComponent = (props) => (React.createElement(ApolloReactComponents.Query, Object.assign({ query: exports.PersonDocument }, props)));
+exports.PersonByUsernameComponent = (props) => (React.createElement(ApolloReactComponents.Query, Object.assign({ query: exports.PersonByUsernameDocument }, props)));
 /**
- * __usePersonQuery__
+ * __usePersonByUsernameQuery__
  *
- * To run a query within a React component, call `usePersonQuery` and pass it any options that fit your needs.
- * When your component renders, `usePersonQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `usePersonByUsernameQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePersonByUsernameQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = usePersonQuery({
+ * const { data, loading, error } = usePersonByUsernameQuery({
  *   variables: {
- *      id: // value for 'id'
+ *      username: // value for 'username'
  *   },
  * });
  */
-function usePersonQuery(baseOptions) {
-    return ApolloReactHooks.useQuery(exports.PersonDocument, baseOptions);
+function usePersonByUsernameQuery(baseOptions) {
+    return ApolloReactHooks.useQuery(exports.PersonByUsernameDocument, baseOptions);
 }
-exports.usePersonQuery = usePersonQuery;
-function usePersonLazyQuery(baseOptions) {
-    return ApolloReactHooks.useLazyQuery(exports.PersonDocument, baseOptions);
+exports.usePersonByUsernameQuery = usePersonByUsernameQuery;
+function usePersonByUsernameLazyQuery(baseOptions) {
+    return ApolloReactHooks.useLazyQuery(exports.PersonByUsernameDocument, baseOptions);
 }
-exports.usePersonLazyQuery = usePersonLazyQuery;
+exports.usePersonByUsernameLazyQuery = usePersonByUsernameLazyQuery;
+exports.PersonBySlugDocument = graphql_tag_1.default `
+    query personBySlug($slug: String!) {
+  personBySlug(slug: $slug) {
+    id
+    fullName
+    username
+    tracks {
+      nodes {
+        id
+        name
+        image
+        file
+        public
+        createdAt
+        updatedAt
+        publishedAt
+        updatedAt
+        deletedAt
+      }
+    }
+  }
+}
+    `;
+exports.PersonBySlugComponent = (props) => (React.createElement(ApolloReactComponents.Query, Object.assign({ query: exports.PersonBySlugDocument }, props)));
+/**
+ * __usePersonBySlugQuery__
+ *
+ * To run a query within a React component, call `usePersonBySlugQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePersonBySlugQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePersonBySlugQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+function usePersonBySlugQuery(baseOptions) {
+    return ApolloReactHooks.useQuery(exports.PersonBySlugDocument, baseOptions);
+}
+exports.usePersonBySlugQuery = usePersonBySlugQuery;
+function usePersonBySlugLazyQuery(baseOptions) {
+    return ApolloReactHooks.useLazyQuery(exports.PersonBySlugDocument, baseOptions);
+}
+exports.usePersonBySlugLazyQuery = usePersonBySlugLazyQuery;
 exports.TrackDocument = graphql_tag_1.default `
-    query track($id: Int!) {
+    query track($id: UUID!) {
   track(id: $id) {
     name
     file
@@ -272,7 +319,7 @@ function useTrackLazyQuery(baseOptions) {
 }
 exports.useTrackLazyQuery = useTrackLazyQuery;
 exports.UserTracksDocument = graphql_tag_1.default `
-    query userTracks($userId: Int!) {
+    query userTracks($userId: UUID!) {
   tracks(condition: {personId: $userId}) {
     totalCount
     nodes {

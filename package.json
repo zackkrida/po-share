@@ -12,8 +12,8 @@
   "scripts": {
     "dev:prebuild": "lerna run build --scope @po-share/graphql-server --scope @po-share/queries",
     "dev": "now dev",
-    "db:cache": "lerna run build:cache",
-    "db:migrate": "lerna run db:migrate",
+    "cache-server": "lerna run build:cache",
+    "migrate": "lerna run db:migrate",
     "build": "lerna run build --parallel",
     "deploy": "now"
   },

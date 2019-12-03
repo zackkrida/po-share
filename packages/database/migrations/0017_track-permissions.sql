@@ -11,13 +11,13 @@ create policy select_track on po_share.track for select
   using (true);
 
 create policy insert_track on po_share.track for insert to po_share_person
-  with check (person_id = nullif(current_setting('jwt.claims.person_id', true), '')::integer);
+  with check (person_id = nullif(current_setting('jwt.claims.person_id', true), '')::uuid);
 
 create policy update_track on po_share.track for update to po_share_person
-  using (person_id = nullif(current_setting('jwt.claims.person_id', true), '')::integer);
+  using (person_id = nullif(current_setting('jwt.claims.person_id', true), '')::uuid);
 
 create policy delete_track on po_share.track for delete to po_share_person
-  using (person_id = nullif(current_setting('jwt.claims.person_id', true), '')::integer);
+  using (person_id = nullif(current_setting('jwt.claims.person_id', true), '')::uuid);
 
 -- Comment on track, remove default delete mutation
 comment on table po_share.track is E'@omit delete';
